@@ -33,6 +33,20 @@ public class Cube : MonoBehaviour
         Destroying?.Invoke(this);
     }
 
+    public void SetRotation(Direction direction)
+    {
+        transform.localEulerAngles = direction switch
+        {
+            Direction.Up => new Vector3(0, 0, 0),
+            Direction.Down => new Vector3(180, 0, 0),
+            Direction.Left => new Vector3(0, 0, 90),
+            Direction.Right => new Vector3(0, 0, -90),
+            Direction.Forward => new Vector3(90, 0, 0),
+            Direction.Backward => new Vector3(-90, 0, 0),
+            _ => throw new ArgumentOutOfRangeException(nameof(direction)),
+        };
+    }
+
     public void Initialize(TrembleAnimator animator)
     {
         _animator = animator;
@@ -70,7 +84,7 @@ public class Cube : MonoBehaviour
         }
         else
         {
-            _movement.MoveOut(direction);
+            _movement.MoveOut();
             IsMovingOut = true;
             _movement.MovementEnded += OnDestroyingMovementEnded;
         }

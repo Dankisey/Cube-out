@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bd1cc4c80208e9409d71caeb05d427d, type: 3}
   m_Name: CubeSettings
   m_EditorClassIdentifier: 
-  <DistanceBeforeDestroy>k__BackingField: 10
+  <TimeBeforeDestroy>k__BackingField: 2
   <MovementSpeed>k__BackingField: 12
   <TrembleDistance>k__BackingField: 0.1
   <TrembleTime>k__BackingField: 0.17
