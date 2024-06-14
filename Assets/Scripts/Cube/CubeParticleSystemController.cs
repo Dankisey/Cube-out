@@ -6,6 +6,13 @@ public class CubeParticleSystemController : MonoBehaviour
     [SerializeField] private CubeMovement _movement;
     [SerializeField] private float _distanceThreshold;
 
+    private float _sqrDistanceThreshold;
+
+    private void Awake()
+    {
+        _sqrDistanceThreshold = _distanceThreshold * _distanceThreshold;
+    }
+
     private void OnEnable()
     {
         _movement.MovementStarted += OnMovementStarted;
@@ -20,9 +27,9 @@ public class CubeParticleSystemController : MonoBehaviour
 
     private void OnMovementStarted(Vector3 target)
     {
-        float distance = (target - transform.localPosition).magnitude;
+        float sqrDistance = (target - transform.localPosition).sqrMagnitude;
 
-        if (distance > _distanceThreshold)
+        if (sqrDistance > _sqrDistanceThreshold)
             _particleSystem.Play();
     }
 
