@@ -123,5 +123,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bombsAmount: 3
   _prefab: {fileID: 1122984944150495, guid: 2e9571bb5d31ee544ab84a5a89c42bb2, type: 3}
-  _instantiatePoint: {fileID: 0}
+  _instantiatePoint: {fileID: 6088234910946801590, guid: 7357516180510874cbf7c03c070c4aba, type: 3}
   _apogeeAdditionalHeight: 1
