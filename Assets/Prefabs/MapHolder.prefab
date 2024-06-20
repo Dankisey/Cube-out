@@ -77,6 +77,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _settings: {fileID: 11400000, guid: 645c23f9b3fc3664bb54ea0e4f246374, type: 2}
+  _mapRoot: {fileID: 1029778739045162640}
+  _maxCubesDistance: 1.1
 --- !u!114 &6398179935236159747
 MonoBehaviour:
   m_ObjectHideFlags: 0

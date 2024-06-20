@@ -10,13 +10,17 @@ public class Cube : MonoBehaviour
     [SerializeField] private CubeMovement _movement;
     [SerializeField] private MeshRenderer _movableModel;
     [SerializeField] private MeshRenderer _frozenModel;
+    [SerializeField] private float _maxCubesDistance = 1.1f;
 
     private TrembleAnimator _animator;
+    private float _sqrMaxCubesDistance;
 
     public int BumpsCount { get; private set; } = 0;
     public bool IsFrozen { get; private set; } = false;
     public bool IsInteractable { get; private set; } = true;
     public bool IsMovingOut { get; private set; } = false;
+
+    public Vector3 MovementDirection => _movement.Direction;
 
     public event Action<Cube> Destroying;
 
@@ -25,6 +29,7 @@ public class Cube : MonoBehaviour
         _movableModel.gameObject.SetActive(true);
         _frozenModel.gameObject.SetActive(false);
         _movement = GetComponent<CubeMovement>();
+        _sqrMaxCubesDistance = _maxCubesDistance * _maxCubesDistance;
     }
 
     private void OnDestroy()
@@ -74,12 +79,13 @@ public class Cube : MonoBehaviour
 
         if (CheckObstacles(hits, out List<Cube> obstacles, out RaycastHit first))
         {
-            Vector3 target = obstacles[0].transform.position + first.normal;
+            Vector3 target = first.collider.transform.localPosition + transform.parent.InverseTransformDirection(first.normal);
+
 
             float time = first.distance / _settings.MovementSpeed;
             _movement.MoveTo(target, time);
 
-            AnimateBumping(obstacles, direction, time);
+            AnimateBumping(obstacles, time);
             _animator.Bumped += OnBumped;
         }
         else
@@ -100,10 +106,10 @@ public class Cube : MonoBehaviour
         return true;
     }
 
-    public void AnimateBumping(List<Cube> obstacles, Vector3 direction, float delay = 0f)
+    public void AnimateBumping(List<Cube> obstacles, float delay = 0f)
     {
         Cube[] bumpingCubes = GetBumpingCubes(obstacles);
-        _animator.DoBumpsAnimation(bumpingCubes, direction, delay);
+        _animator.DoBumpsAnimation(bumpingCubes, delay);
     }
 
     private Cube[] GetBumpingCubes(List<Cube> obstacles)
@@ -121,20 +127,25 @@ public class Cube : MonoBehaviour
     {
         obstacles = new List<Cube>();
         first = default;
-        bool hasObstacles = false;
 
-        foreach (RaycastHit hit in hits)
+        for (int i = 0; i < hits.Length; i++)
         {
-            if (hit.collider.TryGetComponent(out Cube cube))
+            if (hits[i].collider.TryGetComponent(out Cube cube))
             {
                 if (cube.IsMovingOut)
                     continue;
 
-                if (hasObstacles == false)
+                if (obstacles.Count > 0)
                 {
-                    first = hit;
-                    hasObstacles = true;
+                    Vector3 lastObstaclePosition = obstacles[^1].transform.localPosition;
+                    Vector3 currentObstaclePosition = cube.transform.localPosition;
+
+                    if ((lastObstaclePosition - currentObstaclePosition).sqrMagnitude > _sqrMaxCubesDistance)
+                        break;
                 }
+
+                if (obstacles.Count == 0)
+                    first = hits[i];
 
                 obstacles.Add(cube);
 
@@ -143,7 +154,7 @@ public class Cube : MonoBehaviour
             }
         }
 
-        return hasObstacles;
+        return obstacles.Count > 0;
     }
 
     private bool TryFreeze()

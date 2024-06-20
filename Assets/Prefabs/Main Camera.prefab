@@ -44,8 +44,8 @@ Camera:
   m_GameObject: {fileID: 4009759247564664820}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.9150943, g: 0.8780301, b: 0.67682445, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -69,7 +69,7 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
+  orthographic: 1
   orthographic size: 5
   m_Depth: -1
   m_CullingMask:
@@ -108,7 +108,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bombButton: {fileID: 0}
   _bombThrower: {fileID: 1213593371135482420}
-  _rotator: {fileID: 0}
+  _rotator: {fileID: 6398179935236159747, guid: a6684a9f849ecf247a5b74e31ca6ab47, type: 3}
 --- !u!114 &1213593371135482420
 MonoBehaviour:
   m_ObjectHideFlags: 0
