@@ -1,22 +1,33 @@
 ﻿using UnityEngine;
 using System;
 
-public class LevelProgressSaver
+public class LevelProgressSaver : MonoBehaviour
 {
     private const string Level = nameof(Level);
 
     [SerializeField] private LevelSettings _levelSettings;
 
-    public void SetLevelProgress(int levelIndex, int stars)
+    public void SaveLevelCompletition(string levelName)
     {
-        if (levelIndex <= 0 || levelIndex > _levelSettings.AvailableLevels)
-            throw new ArgumentOutOfRangeException(nameof(levelIndex));
+        PlayerPrefs.SetInt(levelName, _levelSettings.MaxStars);
+        PlayerPrefs.Save();
+    }
 
+    public bool TrySetLevelProgress(string levelName, int stars)
+    {
         if (stars <= 0 || stars > _levelSettings.MaxStars)
             throw new ArgumentOutOfRangeException(nameof(stars));
 
-        PlayerPrefs.SetInt($"{Level} {levelIndex}", stars);
+        if (PlayerPrefs.HasKey(levelName))
+        {
+            if (PlayerPrefs.GetInt(levelName) > stars)
+                return false;
+        }
+        
+        PlayerPrefs.SetInt(levelName, stars);
         PlayerPrefs.Save();
+
+        return true;
     }
 
     public int GetLevelProgress(int levelIndex)
@@ -50,5 +61,10 @@ public class LevelProgressSaver
     public int GetLevelsAmount()
     {
         return _levelSettings.AvailableLevels;
+    }
+
+    public int GetMaxStars()
+    {
+        return _levelSettings.MaxStars;
     }
 }

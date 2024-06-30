@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
 
 public class LevelLoader : MonoBehaviour
 {
@@ -10,7 +11,12 @@ public class LevelLoader : MonoBehaviour
     public void LoadLastAvailableLevel()
     {
         int lastAvailableLevelIndex = _levelProgressSaver.GetLastCompletedLevelIndex() + 1;
-        lastAvailableLevelIndex = Mathf.Clamp(lastAvailableLevelIndex, 1, _levelProgressSaver.GetLevelsAmount());
+        int levelsAmount = _levelProgressSaver.GetLevelsAmount();
+
+        if (levelsAmount < 1)
+            throw new ArgumentOutOfRangeException(nameof(levelsAmount));
+
+        lastAvailableLevelIndex = Mathf.Clamp(lastAvailableLevelIndex, 1, levelsAmount);
         TryLoadLevel(lastAvailableLevelIndex);
     }
 

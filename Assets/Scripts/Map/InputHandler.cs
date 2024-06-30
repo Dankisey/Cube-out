@@ -5,8 +5,9 @@ using UnityEngine.UI;
 
 public class InputHandler : MonoBehaviour
 {
-    [SerializeField] private Button _bombButton;
+    [SerializeField] private LevelPauseController _levelPauseController;
     [SerializeField] private BombThrower _bombThrower;
+    [SerializeField] private Button _bombButton;
     [SerializeField] private Rotator _rotator;
 
     private PlayerInputActions _input;
@@ -27,6 +28,8 @@ public class InputHandler : MonoBehaviour
         _input.Player.Hold.performed += OnHoldStart;
         _input.Player.Hold.canceled += OnHoldEnd;
         _bombButton.onClick.AddListener(OnBombButtonClicked);
+        _levelPauseController.IsPaused += OnGamePaused;
+        _levelPauseController.IsResumed += OnGameResumed;
     }
 
     private void OnDisable()
@@ -36,12 +39,24 @@ public class InputHandler : MonoBehaviour
         _input.Player.Hold.performed -= OnHoldStart;
         _input.Player.Hold.canceled -= OnHoldEnd;
         _bombButton.onClick.RemoveListener(OnBombButtonClicked);
+        _levelPauseController.IsPaused -= OnGamePaused;
+        _levelPauseController.IsResumed -= OnGameResumed;
     }
 
     private void Update()
     {
         if (_isHolding)
             _rotator.Rotate(_input.Player.TapDelta.ReadValue<Vector2>());
+    }
+
+    private void OnGameResumed()
+    {
+        _input.Enable();
+    }
+
+    private void OnGamePaused()
+    {
+        _input.Disable();
     }
 
     private void OnBombButtonClicked()

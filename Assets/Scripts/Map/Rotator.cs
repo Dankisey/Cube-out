@@ -2,8 +2,14 @@ using UnityEngine;
 
 public class Rotator : MonoBehaviour
 {
+    [SerializeField] private Vector3 _startRotation;
     [SerializeField] private Rigidbody _target;
     [SerializeField] private float _rotationSpeed;
+
+    private void Awake()
+    {
+        _target.transform.rotation = Quaternion.Euler(_startRotation);
+    }
 
     public void Rotate(Vector3 delta)
     {
