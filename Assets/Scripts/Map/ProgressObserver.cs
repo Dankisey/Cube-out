@@ -1,10 +1,9 @@
 using System;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class ProgressObserver : MonoBehaviour
 {
-    [SerializeField] private LevelProgressSaver _progressSaver;
+    [SerializeField] private ProgressSaver _progressSaver;
 
     private float _currentProgress = 0f;
     private float _starPercentage;
@@ -46,11 +45,8 @@ public class ProgressObserver : MonoBehaviour
             StarsAmountChanged?.Invoke(_currentStars);
         }
 
-        if (_destroyedCubes == _cubesOnStart)
-        {
+        if (_destroyedCubes == _cubesOnStart)       
             LevelCompleted?.Invoke();
-            _progressSaver.SaveLevelCompletition(SceneManager.GetActiveScene().name);
-        }
     }
 
     private int GetStarsAmount()

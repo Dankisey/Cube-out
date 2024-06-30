@@ -1,16 +1,24 @@
 ﻿using UnityEngine;
 using System;
+using UnityEngine.SceneManagement;
 
-public class LevelProgressSaver : MonoBehaviour
+public class ProgressSaver : MonoBehaviour
 {
     private const string Level = nameof(Level);
 
     [SerializeField] private LevelSettings _levelSettings;
 
-    public void SaveLevelCompletition(string levelName)
+    public void SaveCurrentLevelCompletition()
     {
+        string levelName = SceneManager.GetActiveScene().name;
+
         PlayerPrefs.SetInt(levelName, _levelSettings.MaxStars);
         PlayerPrefs.Save();
+    }
+
+    public void DeleteLevelProgress(int levelIndex)
+    {
+        PlayerPrefs.DeleteKey($"{Level} {levelIndex}");
     }
 
     public bool TrySetLevelProgress(string levelName, int stars)

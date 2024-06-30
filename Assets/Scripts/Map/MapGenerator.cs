@@ -19,7 +19,7 @@ public class MapGenerator : MonoBehaviour
     }
 
     [ProButton]
-    private void Generate()
+    public void Generate()
     {
         if (_mapSize.x == 0 || _mapSize.y == 0 || _mapSize.z == 0)
             throw new ArgumentOutOfRangeException(nameof(_mapSize));

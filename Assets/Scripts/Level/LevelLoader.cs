@@ -6,7 +6,7 @@ public class LevelLoader : MonoBehaviour
 {
     private const string Level = nameof(Level);
 
-    [SerializeField] private LevelProgressSaver _levelProgressSaver;
+    [SerializeField] private ProgressSaver _levelProgressSaver;
 
     public void LoadLastAvailableLevel()
     {

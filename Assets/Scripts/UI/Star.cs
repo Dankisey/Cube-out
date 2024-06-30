@@ -19,4 +19,9 @@ public class Star : MonoBehaviour
     {
         _image.color = _enabledColor;
     }
+
+    public void Deactivate()
+    {
+        _image.color = _disabledColor;
+    }
 }
