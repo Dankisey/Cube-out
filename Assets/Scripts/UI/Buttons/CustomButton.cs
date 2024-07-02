@@ -21,5 +21,10 @@ public abstract class CustomButton : MonoBehaviour
         _button.onClick.RemoveListener(OnButtonClick);
     }
 
+    protected void DisableButtonInteractions()
+    {
+        _button.interactable = false;
+    }
+
     protected abstract void OnButtonClick();
 }
