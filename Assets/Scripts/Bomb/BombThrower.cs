@@ -2,21 +2,18 @@ using UnityEngine;
 
 public class BombThrower : MonoBehaviour
 {
-    [SerializeField] private int _bombsAmount = 3;
-    [SerializeField] private Bomb _prefab;
+    [SerializeField] private BombsHolder _bombsHolder;
     [SerializeField] private Transform _instantiatePoint;
     [SerializeField] private float _apogeeAdditionalHeight;
 
     public bool TryThrow(Vector3 target)
     {
-        if (_bombsAmount <= 0)
+        if (_bombsHolder.TryGetBombPrefab(out Bomb prefab) == false)
             return false;
 
         Vector3 velocity = CalculateVelocity(_instantiatePoint.position, target);
-        Bomb bomb = Instantiate(_prefab, _instantiatePoint.position, Quaternion.identity);
+        Bomb bomb = Instantiate(prefab, _instantiatePoint.position, Quaternion.identity);
         bomb.SetVelocity(velocity);
-
-        _bombsAmount--;
 
         return true;
     }
@@ -58,5 +55,5 @@ public class BombThrower : MonoBehaviour
         float time = Mathf.Sqrt((2 * height) / g);
 
         return time;
-    }
+    }  
 }
