@@ -55,12 +55,12 @@ public class ProgressSaver : MonoBehaviour
     {
         int lastCompletedLevelIndex = 0;
 
-        for (int i = 1; i < _levelSettings.AvailableLevels; i++)
+        for (int i = 1; i <= _levelSettings.AvailableLevels; i++)
         {
-            if (PlayerPrefs.HasKey($"{Level} {i}"))
+            if (PlayerPrefs.HasKey($"{Level} {i}"))    
                 lastCompletedLevelIndex = i;
-            else
-                break;
+            else   
+                break;          
         }
 
         return lastCompletedLevelIndex;

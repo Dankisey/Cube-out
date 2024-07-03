@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/LevelsMenu.unity
     guid: e9421025bd78b134c97911a1f07f3e32
   - enabled: 1
+    path: Assets/Scenes/Shop.unity
+    guid: 5d8537c577b310d41a255a40b6b364e8
+  - enabled: 1
     path: Assets/Scenes/InfiniteLevel.unity
     guid: 07ce7096c77f7494db28ac9408672211
   - enabled: 1

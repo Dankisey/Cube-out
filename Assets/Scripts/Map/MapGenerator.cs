@@ -24,6 +24,15 @@ public class MapGenerator : MonoBehaviour
         if (_mapSize.x == 0 || _mapSize.y == 0 || _mapSize.z == 0)
             throw new ArgumentOutOfRangeException(nameof(_mapSize));
 
+        if (_mapParent.childCount != 0)
+        {
+            List<Collider> children = new();
+            _mapParent.GetComponentsInChildren(children);
+
+            foreach (Collider child in children)
+                DestroyImmediate(child.gameObject);
+        }
+
         _mapDraft = new Direction[_mapSize.x, _mapSize.y, _mapSize.z];
 
         FillDraft();

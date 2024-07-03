@@ -4,6 +4,7 @@ using System;
 
 public class LevelLoader : MonoBehaviour
 {
+    private const string InfiniteLevel = nameof(InfiniteLevel);
     private const string Level = nameof(Level);
 
     [SerializeField] private ProgressSaver _progressSaver;
@@ -13,11 +14,18 @@ public class LevelLoader : MonoBehaviour
         int lastAvailableLevelIndex = _progressSaver.GetLastCompletedLevelIndex() + 1;
         int levelsAmount = _progressSaver.GetLevelsAmount();
 
-        if (levelsAmount < 1)
+        if (levelsAmount <= 0)
             throw new ArgumentOutOfRangeException(nameof(levelsAmount));
 
-        lastAvailableLevelIndex = Mathf.Clamp(lastAvailableLevelIndex, 1, levelsAmount);
-        TryLoadLevel(lastAvailableLevelIndex);
+        if (lastAvailableLevelIndex <= levelsAmount)
+            TryLoadLevel(lastAvailableLevelIndex);
+        else
+            LoadInfiniteLevel();
+    }
+
+    public void LoadInfiniteLevel()
+    {
+        SceneManager.LoadScene(InfiniteLevel);
     }
 
     public bool TryLoadLevel(int levelIndex)
