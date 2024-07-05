@@ -38,16 +38,16 @@ public class Cube : MonoBehaviour
         Destroying?.Invoke(this);
     }
 
-    public void SetRotation(Direction direction)
+    public void SetRotation(Directions direction)
     {
         transform.localEulerAngles = direction switch
         {
-            Direction.Up => new Vector3(0, 0, 0),
-            Direction.Down => new Vector3(180, 0, 0),
-            Direction.Left => new Vector3(0, 0, 90),
-            Direction.Right => new Vector3(0, 0, -90),
-            Direction.Forward => new Vector3(90, 0, 0),
-            Direction.Backward => new Vector3(-90, 0, 0),
+            Directions.Up => new Vector3(0, 0, 0),
+            Directions.Down => new Vector3(180, 0, 0),
+            Directions.Left => new Vector3(0, 0, 90),
+            Directions.Right => new Vector3(0, 0, -90),
+            Directions.Forward => new Vector3(90, 0, 0),
+            Directions.Backward => new Vector3(-90, 0, 0),
             _ => throw new ArgumentOutOfRangeException(nameof(direction)),
         };
     }

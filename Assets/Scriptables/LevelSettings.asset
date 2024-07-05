@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0aa5aca6ed3a706429994883a6014236, type: 3}
   m_Name: LevelSettings
   m_EditorClassIdentifier: 
-  <AvailableLevels>k__BackingField: 4
+  <AvailableLevels>k__BackingField: 9
   <MaxStars>k__BackingField: 3
