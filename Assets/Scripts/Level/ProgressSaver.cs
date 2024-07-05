@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using PlayerPrefs = Agava.YandexGames.Utility.PlayerPrefs;
+using UnityEngine;
 using System;
 using UnityEngine.SceneManagement;
 
@@ -19,6 +20,7 @@ public class ProgressSaver : MonoBehaviour
     public void DeleteLevelProgress(int levelIndex)
     {
         PlayerPrefs.DeleteKey($"{Level} {levelIndex}");
+        PlayerPrefs.Save();
     }
 
     public bool TrySetLevelProgress(string levelName, int stars)

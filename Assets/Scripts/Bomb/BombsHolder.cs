@@ -1,4 +1,5 @@
-﻿using com.cyborgAssets.inspectorButtonPro;
+﻿using PlayerPrefs = Agava.YandexGames.Utility.PlayerPrefs;
+using com.cyborgAssets.inspectorButtonPro;
 using System;
 using UnityEngine;
 
