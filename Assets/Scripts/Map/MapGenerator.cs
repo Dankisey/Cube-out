@@ -2,6 +2,7 @@ using com.cyborgAssets.inspectorButtonPro;
 using UnityEngine;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 public class MapGenerator : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class MapGenerator : MonoBehaviour
     [SerializeField] private Cube _prefab;
     [SerializeField] private Vector3Int _mapSize;
 
-    private Direction[,,] _mapDraft;
+    private CubeDraft[,,] _mapDraft;
 
     private void OnValidate()
     {
@@ -33,15 +34,14 @@ public class MapGenerator : MonoBehaviour
                 DestroyImmediate(child.gameObject);
         }
 
-        _mapDraft = new Direction[_mapSize.x, _mapSize.y, _mapSize.z];
-
+        ResetDraft();
         FillDraft();
         InstantiateMap();
     }
 
     private void InstantiateMap()
     {
-        Vector3 center = new Vector3(_mapSize.x -1, _mapSize.y -1, _mapSize.z - 1) / 2;
+        Vector3 center = new Vector3(_mapSize.x - 1, _mapSize.y - 1, _mapSize.z - 1) / 2;
 
         for (int x = 0; x < _mapSize.x; x++)
         {
@@ -51,7 +51,7 @@ public class MapGenerator : MonoBehaviour
                 {
                     Cube cube = Instantiate(_prefab, _mapParent);
                     cube.transform.localPosition = GetPosition(center, new Vector3(x, y, z));
-                    cube.SetRotation(_mapDraft[x, y, z]);
+                    cube.SetRotation(_mapDraft[x, y, z].Direction);
                 }
             }
         }
@@ -64,22 +64,64 @@ public class MapGenerator : MonoBehaviour
 
     private void FillDraft()
     {
+        bool isFailedDraft = false;
+        HashSet<CubeDraft> visited = new();
+
         for (int x = 0; x < _mapSize.x; x++)
         {
             for (int y = 0; y < _mapSize.y; y++)
             {
                 for (int z = 0; z < _mapSize.z; z++)
                 {
-                    Direction[] directions = GetAvailableDirections(new Vector3Int(x, y, z));
-                    _mapDraft[x, y, z] = directions[UnityEngine.Random.Range(0, directions.Length)];
+                    List<Directions> directions = GetAvailableDirections(new Vector3Int(x, y, z)).ToList();
+                    _mapDraft[x, y, z].Coordinates = new Vector3Int(x, y, z);
+
+                    while (isFailedDraft == false)
+                    {
+                        visited.Clear();
+                        int randomIndex = UnityEngine.Random.Range(0, directions.Count);
+                        _mapDraft[x, y, z].Direction = directions[randomIndex];
+
+                        if (IsCycled(_mapDraft[x, y, z], visited))
+                        {
+                            directions.RemoveAt(randomIndex);
+
+                            if (directions.Count == 0)
+                                isFailedDraft = true;
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+
+                    if (isFailedDraft)
+                        break;
                 }
+
+                if (isFailedDraft)
+                    break;
             }
+
+            if (isFailedDraft)
+                break;
+        }
+
+        if (isFailedDraft)
+        {
+            ResetDraft();
+            FillDraft();
         }
     }
 
-    private Direction[] GetAvailableDirections(Vector3Int coordinate)
+    private void ResetDraft()
     {
-        List<Direction> _directions = new();
+        _mapDraft = new CubeDraft[_mapSize.x, _mapSize.y, _mapSize.z];
+    }
+
+    private Directions[] GetAvailableDirections(Vector3Int coordinate)
+    {
+        List<Directions> _directions = new();
         _directions.AddRange(GetDirectionsX(coordinate));
         _directions.AddRange(GetDirectionsY(coordinate));
         _directions.AddRange(GetDirectionsZ(coordinate));
@@ -87,41 +129,87 @@ public class MapGenerator : MonoBehaviour
         return _directions.ToArray();
     }
 
-    private Direction[] GetDirectionsX(Vector3Int coordinate)
+    private Directions[] GetDirectionsX(Vector3Int coordinate)
     {
         for (int x = 0; x < coordinate.x; x++)
         {
-            if (_mapDraft[x, coordinate.y, coordinate.z] == Direction.Right)
-                return new Direction[] { Direction.Right };
+            if (_mapDraft[x, coordinate.y, coordinate.z].Direction == Directions.Right)
+                return new Directions[] { Directions.Right };
         }
 
-        return new Direction[] { Direction.Left, Direction.Right };
+        return new Directions[] { Directions.Left, Directions.Right };
     }
 
-    private Direction[] GetDirectionsY(Vector3Int coordinate)
+    private Directions[] GetDirectionsY(Vector3Int coordinate)
     {
         for (int y = 0; y < coordinate.y; y++)
         {
-            if (_mapDraft[coordinate.x, y, coordinate.z] == Direction.Up)
-                return new Direction[] { Direction.Up };
+            if (_mapDraft[coordinate.x, y, coordinate.z].Direction == Directions.Up)
+                return new Directions[] { Directions.Up };
         }
 
-        return new Direction[] { Direction.Up, Direction.Down };
+        return new Directions[] { Directions.Up, Directions.Down };
     }
 
-    private Direction[] GetDirectionsZ(Vector3Int coordinate)
+    private Directions[] GetDirectionsZ(Vector3Int coordinate)
     {
         for (int z = 0; z < coordinate.z; z++)
         {
-            if (_mapDraft[coordinate.x, coordinate.y, z] == Direction.Forward)
-                return new Direction[] { Direction.Forward };
+            if (_mapDraft[coordinate.x, coordinate.y, z].Direction == Directions.Forward)
+                return new Directions[] { Directions.Forward };
         }
 
-        return new Direction[] { Direction.Forward, Direction.Backward };
+        return new Directions[] { Directions.Forward, Directions.Backward };
+    }
+
+    private bool IsCycled(CubeDraft toCheck, HashSet<CubeDraft> visited)
+    {
+        visited.Add(toCheck);
+        Vector3Int nextCubeCoordinates = GetNextCubeCoordinates(toCheck);
+
+        if (IsOutOfBounds(nextCubeCoordinates))
+            return false;
+
+        CubeDraft next = _mapDraft[nextCubeCoordinates.x, nextCubeCoordinates.y, nextCubeCoordinates.z];
+
+        if (next.Direction == Directions.None)
+            return false;
+        else if (visited.Contains(next))
+            return true;
+        else
+            return IsCycled(next, visited);
+    }
+
+    private Vector3Int GetNextCubeCoordinates(CubeDraft cubeDraft)
+    {
+        Vector3Int toSumm = cubeDraft.Direction switch
+        {
+            Directions.Forward => Vector3Int.forward,
+            Directions.Backward => Vector3Int.back,
+            Directions.Up => Vector3Int.up,
+            Directions.Down => Vector3Int.down,
+            Directions.Left => Vector3Int.left,
+            Directions.Right => Vector3Int.right,
+            _ => Vector3Int.zero,
+        };
+
+        return cubeDraft.Coordinates + toSumm;
+    }
+
+    private bool IsOutOfBounds(Vector3Int coordinates)
+    {
+        return coordinates.x < 0 || coordinates.x >= _mapSize.x || coordinates.y < 0 || 
+            coordinates.y >= _mapSize.y || coordinates.z < 0 || coordinates.z >= _mapSize.z;
     }
 }
 
-public enum Direction
+public struct CubeDraft
+{
+    public Directions Direction;
+    public Vector3Int Coordinates;
+}
+
+public enum Directions
 {
     None = 0,
     Up = 1,
