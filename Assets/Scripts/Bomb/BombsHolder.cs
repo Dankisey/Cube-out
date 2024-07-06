@@ -1,9 +1,8 @@
 ﻿using com.cyborgAssets.inspectorButtonPro;
 using System;
 using UnityEngine;
-#if UNITY_WEBGL && !UNITY_EDITOR
 using PlayerPrefs = Agava.YandexGames.Utility.PlayerPrefs;
-#endif
+
 
 public class BombsHolder : MonoBehaviour
 {

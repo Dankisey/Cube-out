@@ -1,9 +1,8 @@
 ﻿using UnityEngine;
 using System;
 using UnityEngine.SceneManagement;
-#if UNITY_WEBGL && !UNITY_EDITOR
 using PlayerPrefs = Agava.YandexGames.Utility.PlayerPrefs;
-#endif
+
 
 public class ProgressSaver : MonoBehaviour
 {
