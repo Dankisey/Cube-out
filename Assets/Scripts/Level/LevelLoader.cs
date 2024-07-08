@@ -37,11 +37,4 @@ public class LevelLoader : MonoBehaviour
 
         return true;
     }
-
-    public bool CanLoadLevel(int levelIndex)
-    {
-        int lastAvailableLevelIndex = _progressSaver.GetLastCompletedLevelIndex() + 1;
-
-        return levelIndex <= lastAvailableLevelIndex;
-    }
 }

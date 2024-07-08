@@ -18,7 +18,11 @@ public class VictoryController : MonoBehaviour
 
     private void OnLevelCompleted()
     {
-        _progressSaver.SaveCurrentLevelCompletition();
+        _progressSaver.SaveCurrentLevelCompletition(OnProgressSaved);
+    }
+
+    private void OnProgressSaved()
+    {
         _victoryPanelGroup.TurnOn();
     }
 }

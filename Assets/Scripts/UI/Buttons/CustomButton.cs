@@ -9,6 +9,7 @@ public abstract class CustomButton : MonoBehaviour
     private void Awake()
     {
         _button = GetComponent<Button>();
+        OnAwake();
     }
 
     private void OnEnable()
@@ -21,10 +22,17 @@ public abstract class CustomButton : MonoBehaviour
         _button.onClick.RemoveListener(OnButtonClick);
     }
 
+    protected void EnableButtonInteractions()
+    {
+        _button.interactable = true;
+    }
+
     protected void DisableButtonInteractions()
     {
         _button.interactable = false;
     }
+
+    protected virtual void OnAwake() { }
 
     protected abstract void OnButtonClick();
 }

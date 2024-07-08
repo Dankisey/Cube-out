@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 using System;
 using UnityEngine.SceneManagement;
+#if UNITY_WEBGL && !UNITY_EDITOR
 using PlayerPrefs = Agava.YandexGames.Utility.PlayerPrefs;
-
+#endif
 
 public class ProgressSaver : MonoBehaviour
 {
@@ -10,12 +11,18 @@ public class ProgressSaver : MonoBehaviour
 
     [SerializeField] private LevelSettings _levelSettings;
 
-    public void SaveCurrentLevelCompletition()
+    public void SaveCurrentLevelCompletition(Action callback)
     {
         string levelName = SceneManager.GetActiveScene().name;
 
         PlayerPrefs.SetInt(levelName, _levelSettings.MaxStars);
+
+#if UNITY_WEBGL && !UNITY_EDITOR
+        PlayerPrefs.Save(onSuccessCallback : callback);
+#else
         PlayerPrefs.Save();
+        callback?.Invoke();
+#endif
     }
 
     public void DeleteLevelProgress(int levelIndex)
@@ -24,34 +31,13 @@ public class ProgressSaver : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-    public bool TrySetLevelProgress(string levelName, int stars)
+    public void LoadProgress(Action callback)
     {
-        if (stars <= 0 || stars > _levelSettings.MaxStars)
-            throw new ArgumentOutOfRangeException(nameof(stars));
-
-        if (PlayerPrefs.HasKey(levelName))
-        {
-            if (PlayerPrefs.GetInt(levelName) > stars)
-                return false;
-        }
-        
-        PlayerPrefs.SetInt(levelName, stars);
-        PlayerPrefs.Save();
-
-        return true;
-    }
-
-    public int GetLevelProgress(int levelIndex)
-    {
-        if (levelIndex > _levelSettings.AvailableLevels)
-            throw new ArgumentOutOfRangeException(nameof(levelIndex));
-
-        string levelKey = $"{Level} {levelIndex}";
-
-        if (PlayerPrefs.HasKey(levelKey))
-            return PlayerPrefs.GetInt(levelKey);
-        else
-            return 0;
+#if UNITY_WEBGL && !UNITY_EDITOR
+        PlayerPrefs.Load(onSuccessCallback : callback);
+#else
+        callback?.Invoke();
+#endif
     }
 
     public int GetLastCompletedLevelIndex()
@@ -60,10 +46,10 @@ public class ProgressSaver : MonoBehaviour
 
         for (int i = 1; i <= _levelSettings.AvailableLevels; i++)
         {
-            if (PlayerPrefs.HasKey($"{Level} {i}"))    
+            if (PlayerPrefs.HasKey($"{Level} {i}"))
                 lastCompletedLevelIndex = i;
-            else   
-                break;          
+            else
+                break;
         }
 
         return lastCompletedLevelIndex;

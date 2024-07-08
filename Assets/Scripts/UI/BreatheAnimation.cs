@@ -9,12 +9,12 @@ public class BreatheAnimation : MonoBehaviour
 
     private Tween _tween;
 
-    private void Awake()
+    private void OnEnable()
     {
         _tween = _target.DOScale(_endScaleFactor, _duration).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutQuad);
     }
 
-    private void OnDestroy()
+    private void OnDisable()
     {
         _tween?.Kill();
     }

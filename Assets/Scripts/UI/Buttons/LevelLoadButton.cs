@@ -10,12 +10,16 @@ public class LevelLoadButton : CustomButton
     [SerializeField] private Image _lockImage;
     [SerializeField] private int _levelIndex;
 
-    private void Start()
+    public void Initialize(int maxAvailableLevel)
+    {
+        if (_levelIndex <= maxAvailableLevel)
+            Unlock();
+    }
+
+    protected override void OnAwake()
     {
         _label.text = $"{_levelIndex}";
-
-        if (_levelLoader.CanLoadLevel(_levelIndex) == false)
-            Lock();
+        Lock();
     }
 
     protected override void OnButtonClick()
@@ -28,5 +32,12 @@ public class LevelLoadButton : CustomButton
         _label.color = _textDisabledColor;
         _lockImage.enabled = true;
         DisableButtonInteractions();
+    }
+
+    private void Unlock()
+    {
+        _label.color = Color.black;
+        _lockImage.enabled = false;
+        EnableButtonInteractions();
     }
 }
