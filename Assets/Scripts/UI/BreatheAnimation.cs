@@ -12,6 +12,7 @@ public class BreatheAnimation : MonoBehaviour
     private void OnEnable()
     {
         _tween = _target.DOScale(_endScaleFactor, _duration).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutQuad);
+        Time.timeScale = 1;
     }
 
     private void OnDisable()

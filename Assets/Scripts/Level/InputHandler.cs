@@ -18,7 +18,11 @@ public class InputHandler : MonoBehaviour
     private void Awake()
     {
         _camera = Camera.main;
-        _input = new PlayerInputActions();
+
+        if (_input == null)
+            _input = new PlayerInputActions();
+
+        Time.timeScale = 1;
     }
 
     private void OnEnable()
