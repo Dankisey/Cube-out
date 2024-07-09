@@ -1,11 +1,15 @@
 ﻿using UnityEngine;
+using Game.Level;
 
-public class InfiniteLevelButton : CustomButton
+namespace Game.UI.Buttons
 {
-    [SerializeField] private LevelLoader _levelLoader;
-
-    protected override void OnButtonClick()
+    public class InfiniteLevelButton : CustomButton
     {
-        _levelLoader.LoadInfiniteLevel();
+        [SerializeField] private Loader _loader;
+
+        protected override void OnButtonClick()
+        {
+            _loader.LoadInfiniteLevel();
+        }
     }
 }

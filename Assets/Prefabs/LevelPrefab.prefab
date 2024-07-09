@@ -380,7 +380,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fc750b9be7c648438bdd81ac5607a48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _levelPauseController: {fileID: 3937514718876193618}
+  _pauseController: {fileID: 0}
   _gameUI: {fileID: 6980111664883971032}
 --- !u!1 &199667897979104801
 GameObject:
@@ -2605,7 +2605,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c9b76e57c5a5f34192b96154c0e6b0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _levelLoader: {fileID: 8264567896211209036}
+  _loader: {fileID: 0}
 --- !u!1 &4488575499804574414
 GameObject:
   m_ObjectHideFlags: 0
@@ -4089,7 +4089,7 @@ GameObject:
   - component: {fileID: 2960588708212927639}
   - component: {fileID: 6958261912336624145}
   - component: {fileID: 6595088577161780525}
-  - component: {fileID: 4229436997224413999}
+  - component: {fileID: 8994774248493085089}
   - component: {fileID: 6747556833694057390}
   m_Layer: 5
   m_Name: VictoryPanel
@@ -4172,7 +4172,7 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &4229436997224413999
+--- !u!114 &8994774248493085089
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4181,11 +4181,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 8101800092809197269}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e77db9e4d365d6f4cb38512ed858b206, type: 3}
+  m_Script: {fileID: 11500000, guid: 42ada24e6c0afac419c6568f6a1d55d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _turningOffStrategie: 1
   _turnOffOnAwake: 1
+  _victoryController: {fileID: 6747556833694057390}
 --- !u!114 &6747556833694057390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4200,7 +4201,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _progressObserver: {fileID: 4529678053452024105}
   _progressSaver: {fileID: 8447953668648388487}
-  _victoryPanelGroup: {fileID: 4229436997224413999}
 --- !u!1 &8673869498278871628
 GameObject:
   m_ObjectHideFlags: 0

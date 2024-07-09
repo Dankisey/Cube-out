@@ -1,16 +1,19 @@
-using com.cyborgAssets.inspectorButtonPro;
 using UnityEngine;
+using com.cyborgAssets.inspectorButtonPro;
 
-public class ProgressReseter : MonoBehaviour
+namespace Game
 {
-    [SerializeField] private ProgressSaver _progressSaver;
-
-    [ProButton]
-    public void ResetProgress()
+    public class ProgressReseter : MonoBehaviour
     {
-        int lastCompletedLevel = _progressSaver.GetLastCompletedLevelIndex();
+        [SerializeField] private ProgressSaver _progressSaver;
 
-        for (int i = 1; i <= lastCompletedLevel; i++)
-            _progressSaver.DeleteLevelProgress(i);
+        [ProButton]
+        public void ResetProgress()
+        {
+            int lastCompletedLevel = _progressSaver.GetLastCompletedLevelIndex();
+
+            for (int i = 1; i <= lastCompletedLevel; i++)
+                _progressSaver.DeleteLevelProgress(i);
+        }
     }
 }

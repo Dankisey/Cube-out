@@ -1,40 +1,44 @@
 using UnityEngine;
+using Game.Cube;
 
-[RequireComponent(typeof(Rigidbody))]
-public class Bomb : MonoBehaviour
+namespace Game.Bomb
 {
-    [SerializeField] private float _explosionRadius;
-
-    private Rigidbody _rigidbody;
-
-    private void Awake()
+    [RequireComponent(typeof(Rigidbody))]
+    public class Bomb : MonoBehaviour
     {
-        _rigidbody = GetComponent<Rigidbody>();
-    }
+        [SerializeField] private float _explosionRadius;
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.TryGetComponent(out Cube cube))
+        private Rigidbody _rigidbody;
+
+        private void Awake()
         {
-            DoExplosion();
-        }
-    }
-
-    public void SetVelocity(Vector3 velocity)
-    {
-        _rigidbody.velocity = velocity;
-    }
-
-    private void DoExplosion()
-    {
-        Collider[] colliders = Physics.OverlapSphere(transform.position, _explosionRadius);
-
-        foreach (Collider collider in colliders)
-        {
-            if (collider.TryGetComponent(out Cube cube))
-                cube.Explode();
+            _rigidbody = GetComponent<Rigidbody>();
         }
 
-        Destroy(gameObject);
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.TryGetComponent(out Entity cube))
+            {
+                DoExplosion();
+            }
+        }
+
+        public void SetVelocity(Vector3 velocity)
+        {
+            _rigidbody.velocity = velocity;
+        }
+
+        private void DoExplosion()
+        {
+            Collider[] colliders = Physics.OverlapSphere(transform.position, _explosionRadius);
+
+            foreach (Collider collider in colliders)
+            {
+                if (collider.TryGetComponent(out Entity cube))
+                    cube.Explode();
+            }
+
+            Destroy(gameObject);
+        }
     }
 }

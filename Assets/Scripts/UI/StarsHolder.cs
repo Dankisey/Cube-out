@@ -1,23 +1,27 @@
 using UnityEngine;
+using Game.Level;
 
-public class StarsHolder : MonoBehaviour
+namespace Game.UI
 {
-    [SerializeField] private ProgressObserver _progressObserver;
-    [SerializeField] private Star[] _stars;
-
-    private void OnEnable()
+    public class StarsHolder : MonoBehaviour
     {
-        _progressObserver.StarsAmountChanged += OnStarsAmountChanged;
-    }
+        [SerializeField] private ProgressObserver _progressObserver;
+        [SerializeField] private Star[] _stars;
 
-    private void OnDisable()
-    {
-        _progressObserver.StarsAmountChanged -= OnStarsAmountChanged;
-    }
+        private void OnEnable()
+        {
+            _progressObserver.StarsAmountChanged += OnStarsAmountChanged;
+        }
 
-    private void OnStarsAmountChanged(int starsAmount)
-    {
-        for (int i = 0; i < starsAmount; i++)
-            _stars[i].Activate();
+        private void OnDisable()
+        {
+            _progressObserver.StarsAmountChanged -= OnStarsAmountChanged;
+        }
+
+        private void OnStarsAmountChanged(int starsAmount)
+        {
+            for (int i = 0; i < starsAmount; i++)
+                _stars[i].Activate();
+        }
     }
 }

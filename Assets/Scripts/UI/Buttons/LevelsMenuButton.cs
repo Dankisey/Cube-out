@@ -1,11 +1,14 @@
 using UnityEngine.SceneManagement;
 
-public class LevelsMenuButton : CustomButton
+namespace Game.UI.Buttons
 {
-    private const string LevelsMenu = nameof(LevelsMenu);
-
-    protected override void OnButtonClick()
+    public class LevelsMenuButton : CustomButton
     {
-        SceneManager.LoadScene(LevelsMenu);
+        private const string LevelsMenu = nameof(LevelsMenu);
+
+        protected override void OnButtonClick()
+        {
+            SceneManager.LoadScene(LevelsMenu);
+        }
     }
 }

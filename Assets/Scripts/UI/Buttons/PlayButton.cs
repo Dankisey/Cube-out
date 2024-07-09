@@ -1,11 +1,15 @@
 using UnityEngine;
+using Game.Level;
 
-public class PlayButton : CustomButton
+namespace Game.UI.Buttons
 {
-    [SerializeField] private LevelLoader _levelLoader;
-
-    protected override void OnButtonClick()
+    public class PlayButton : CustomButton
     {
-        _levelLoader.LoadLastAvailableLevel();
+        [SerializeField] private Loader _loader;
+
+        protected override void OnButtonClick()
+        {
+            _loader.LoadLastAvailableLevel();
+        }
     }
 }

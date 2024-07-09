@@ -1,6 +1,9 @@
-﻿public class GameLabel : TranslatingLabel
+﻿namespace Localization
 {
-    private const string GameName = nameof(GameName);
+    public class GameLabel : TranslatingLabel
+    {
+        private const string GameName = nameof(GameName);
 
-    protected override string GetText() => GetTranslation(GameName);
+        protected override string GetText() => GetTranslation(GameName);
+    }
 }

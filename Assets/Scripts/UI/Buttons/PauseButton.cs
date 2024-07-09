@@ -1,13 +1,17 @@
 using UnityEngine;
+using Game.Level;
 
-public class PauseButton : CustomButton
+namespace Game.UI.Buttons
 {
-    [SerializeField] private LevelPauseController _pauseController;
-    [SerializeField] private UIGroup _pauseMenuGroup;
-
-    protected override void OnButtonClick()
+    public class PauseButton : CustomButton
     {
-        _pauseController.Pause();
-        _pauseMenuGroup.TurnOn();
+        [SerializeField] private PauseController _pauseController;
+        [SerializeField] private UIGroup _pauseMenuGroup;
+
+        protected override void OnButtonClick()
+        {
+            _pauseController.Pause();
+            _pauseMenuGroup.TurnOn();
+        }
     }
 }

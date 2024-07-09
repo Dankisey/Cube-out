@@ -1,67 +1,70 @@
-﻿using UnityEngine;
-using System;
+﻿using System;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 #if UNITY_WEBGL && !UNITY_EDITOR
 using PlayerPrefs = Agava.YandexGames.Utility.PlayerPrefs;
 #endif
 
-public class ProgressSaver : MonoBehaviour
+namespace Game
 {
-    private const string Level = nameof(Level);
-
-    [SerializeField] private LevelSettings _levelSettings;
-
-    public void SaveCurrentLevelCompletition(Action callback)
+    public class ProgressSaver : MonoBehaviour
     {
-        string levelName = SceneManager.GetActiveScene().name;
+        private const string Level = nameof(Level);
 
-        PlayerPrefs.SetInt(levelName, _levelSettings.MaxStars);
+        [SerializeField] private LevelSettings _levelSettings;
+
+        public void SaveCurrentLevelCompletition(Action callback)
+        {
+            string levelName = SceneManager.GetActiveScene().name;
+
+            PlayerPrefs.SetInt(levelName, _levelSettings.MaxStars);
 
 #if UNITY_WEBGL && !UNITY_EDITOR
         PlayerPrefs.Save(onSuccessCallback : callback);
 #else
-        PlayerPrefs.Save();
-        callback?.Invoke();
+            PlayerPrefs.Save();
+            callback?.Invoke();
 #endif
-    }
+        }
 
-    public void DeleteLevelProgress(int levelIndex)
-    {
-        PlayerPrefs.DeleteKey($"{Level} {levelIndex}");
-        PlayerPrefs.Save();
-    }
+        public void DeleteLevelProgress(int levelIndex)
+        {
+            PlayerPrefs.DeleteKey($"{Level} {levelIndex}");
+            PlayerPrefs.Save();
+        }
 
-    public void LoadProgress(Action callback)
-    {
+        public void LoadProgress(Action callback)
+        {
 #if UNITY_WEBGL && !UNITY_EDITOR
         PlayerPrefs.Load(onSuccessCallback : callback);
 #else
-        callback?.Invoke();
+            callback?.Invoke();
 #endif
-    }
-
-    public int GetLastCompletedLevelIndex()
-    {
-        int lastCompletedLevelIndex = 0;
-
-        for (int i = 1; i <= _levelSettings.AvailableLevels; i++)
-        {
-            if (PlayerPrefs.HasKey($"{Level} {i}"))
-                lastCompletedLevelIndex = i;
-            else
-                break;
         }
 
-        return lastCompletedLevelIndex;
-    }
+        public int GetLastCompletedLevelIndex()
+        {
+            int lastCompletedLevelIndex = 0;
 
-    public int GetLevelsAmount()
-    {
-        return _levelSettings.AvailableLevels;
-    }
+            for (int i = 1; i <= _levelSettings.AvailableLevels; i++)
+            {
+                if (PlayerPrefs.HasKey($"{Level} {i}"))
+                    lastCompletedLevelIndex = i;
+                else
+                    break;
+            }
 
-    public int GetMaxStars()
-    {
-        return _levelSettings.MaxStars;
+            return lastCompletedLevelIndex;
+        }
+
+        public int GetLevelsAmount()
+        {
+            return _levelSettings.AvailableLevels;
+        }
+
+        public int GetMaxStars()
+        {
+            return _levelSettings.MaxStars;
+        }
     }
 }

@@ -2,16 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 
-public class Phrase : MonoBehaviour
+namespace Localization
 {
-    [SerializeField] private List<Translation> _translations;
-
-    [field: SerializeField] public string Code { get; private set; }
-
-    public string GetTranslation(string language)
+    public class Phrase : MonoBehaviour
     {
-        Translation translation = _translations.Where(t => t.Language.ToLower() == language).FirstOrDefault();
+        [SerializeField] private List<Translation> _translations;
 
-        return translation.TranslatedText;
+        [field: SerializeField] public string Code { get; private set; }
+
+        public string GetTranslation(string language)
+        {
+            Translation translation = _translations.Where(t => t.Language.ToLower() == language).FirstOrDefault();
+
+            return translation.TranslatedText;
+        }
     }
 }

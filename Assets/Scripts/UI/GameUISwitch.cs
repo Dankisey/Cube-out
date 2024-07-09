@@ -1,29 +1,33 @@
 using UnityEngine;
+using Game.Level;
 
-public class GameUISwitch : MonoBehaviour
+namespace Game.UI
 {
-    [SerializeField] private LevelPauseController _levelPauseController;
-    [SerializeField] private UIGroup _gameUI;
-
-    private void OnEnable()
+    public class GameUISwitch : MonoBehaviour
     {
-        _levelPauseController.IsPaused += OnGamePaused;
-        _levelPauseController.IsResumed += OnGameResumed;
-    }
+        [SerializeField] private PauseController _pauseController;
+        [SerializeField] private UIGroup _gameUI;
 
-    private void OnDisable()
-    {
-        _levelPauseController.IsPaused -= OnGamePaused;
-        _levelPauseController.IsResumed -= OnGameResumed;
-    }
+        private void OnEnable()
+        {
+            _pauseController.IsPaused += OnGamePaused;
+            _pauseController.IsResumed += OnGameResumed;
+        }
 
-    private void OnGamePaused()
-    {
-        _gameUI.TurnOff();
-    }
+        private void OnDisable()
+        {
+            _pauseController.IsPaused -= OnGamePaused;
+            _pauseController.IsResumed -= OnGameResumed;
+        }
 
-    private void OnGameResumed()
-    {
-        _gameUI.TurnOn();
+        private void OnGamePaused()
+        {
+            _gameUI.TurnOff();
+        }
+
+        private void OnGameResumed()
+        {
+            _gameUI.TurnOn();
+        }
     }
 }

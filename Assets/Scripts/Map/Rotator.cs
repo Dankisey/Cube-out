@@ -1,19 +1,22 @@
 using UnityEngine;
 
-public class Rotator : MonoBehaviour
+namespace Game.Level.Map
 {
-    [SerializeField] private Vector3 _startRotation;
-    [SerializeField] private Rigidbody _target;
-    [SerializeField] private float _rotationSpeed;
-
-    private void Awake()
+    public class Rotator : MonoBehaviour
     {
-        _target.transform.rotation = Quaternion.Euler(_startRotation);
-    }
+        [SerializeField] private Vector3 _startRotation;
+        [SerializeField] private Rigidbody _target;
+        [SerializeField] private float _rotationSpeed;
 
-    public void Rotate(Vector3 delta)
-    {
-        delta *= _rotationSpeed * Time.deltaTime;
-        _target.AddTorque(new Vector3(delta.y, -delta.x));
+        private void Awake()
+        {
+            _target.transform.rotation = Quaternion.Euler(_startRotation);
+        }
+
+        public void Rotate(Vector3 delta)
+        {
+            delta *= _rotationSpeed * Time.deltaTime;
+            _target.AddTorque(new Vector3(delta.y, -delta.x));
+        }
     }
 }

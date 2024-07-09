@@ -1,53 +1,57 @@
-using System.Collections;
-using UnityEngine.UI;
-using UnityEngine;
 using System;
+using System.Collections;
+using UnityEngine;
+using UnityEngine.UI;
+using Game.Level;
 
-public class ProgressBar : MonoBehaviour
+namespace Game.UI
 {
-    [SerializeField] private ProgressObserver _progressObserver;
-    [SerializeField] private Image _filler;
-    [SerializeField][Range(0, 1)] private float _maxChangingDelta;
-
-    private Coroutine _currentCoroutine = null;
-
-    private void Awake()
+    public class ProgressBar : MonoBehaviour
     {
-        _filler.fillAmount = 0;
-    }
+        [SerializeField] private ProgressObserver _progressObserver;
+        [SerializeField] private Image _filler;
+        [SerializeField][Range(0, 1)] private float _maxChangingDelta;
 
-    private void OnEnable()
-    {
-        _progressObserver.ProgressChanged += OnValueChanged;
-    }
+        private Coroutine _currentCoroutine = null;
 
-    private void OnDisable()
-    {
-        _progressObserver.ProgressChanged -= OnValueChanged;
-    }
-
-    private void OnValueChanged(float normalizedValue)
-    {
-        ChangeSliderValue(normalizedValue);
-    }
-
-    private void ChangeSliderValue(float normalizedValue)
-    {
-        if (_currentCoroutine != null)
-            StopCoroutine(_currentCoroutine);
-
-        _currentCoroutine = StartCoroutine(ChangeValueSmooth(normalizedValue));
-    }
-
-    private IEnumerator ChangeValueSmooth(float targetValue)
-    {
-        while (Mathf.Approximately(_filler.fillAmount, targetValue) == false)
+        private void Awake()
         {
-            _filler.fillAmount = Mathf.MoveTowards(_filler.fillAmount, targetValue, _maxChangingDelta * Time.deltaTime);
-
-            yield return null;
+            _filler.fillAmount = 0;
         }
 
-        _currentCoroutine = null;
+        private void OnEnable()
+        {
+            _progressObserver.ProgressChanged += OnValueChanged;
+        }
+
+        private void OnDisable()
+        {
+            _progressObserver.ProgressChanged -= OnValueChanged;
+        }
+
+        private void OnValueChanged(float normalizedValue)
+        {
+            ChangeSliderValue(normalizedValue);
+        }
+
+        private void ChangeSliderValue(float normalizedValue)
+        {
+            if (_currentCoroutine != null)
+                StopCoroutine(_currentCoroutine);
+
+            _currentCoroutine = StartCoroutine(ChangeValueSmooth(normalizedValue));
+        }
+
+        private IEnumerator ChangeValueSmooth(float targetValue)
+        {
+            while (Mathf.Approximately(_filler.fillAmount, targetValue) == false)
+            {
+                _filler.fillAmount = Mathf.MoveTowards(_filler.fillAmount, targetValue, _maxChangingDelta * Time.deltaTime);
+
+                yield return null;
+            }
+
+            _currentCoroutine = null;
+        }
     }
 }

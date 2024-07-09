@@ -1,38 +1,41 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Button))]
-public abstract class CustomButton : MonoBehaviour
+namespace Game.UI.Buttons
 {
-    private Button _button;
-
-    private void Awake()
+    [RequireComponent(typeof(Button))]
+    public abstract class CustomButton : MonoBehaviour
     {
-        _button = GetComponent<Button>();
-        OnAwake();
+        private Button _button;
+
+        private void Awake()
+        {
+            _button = GetComponent<Button>();
+            OnAwake();
+        }
+
+        private void OnEnable()
+        {
+            _button.onClick.AddListener(OnButtonClick);
+        }
+
+        private void OnDisable()
+        {
+            _button.onClick.RemoveListener(OnButtonClick);
+        }
+
+        protected void EnableButtonInteractions()
+        {
+            _button.interactable = true;
+        }
+
+        protected void DisableButtonInteractions()
+        {
+            _button.interactable = false;
+        }
+
+        protected virtual void OnAwake() { }
+
+        protected abstract void OnButtonClick();
     }
-
-    private void OnEnable()
-    {
-        _button.onClick.AddListener(OnButtonClick);
-    }
-
-    private void OnDisable()
-    {
-        _button.onClick.RemoveListener(OnButtonClick);
-    }
-
-    protected void EnableButtonInteractions()
-    {
-        _button.interactable = true;
-    }
-
-    protected void DisableButtonInteractions()
-    {
-        _button.interactable = false;
-    }
-
-    protected virtual void OnAwake() { }
-
-    protected abstract void OnButtonClick();
 }

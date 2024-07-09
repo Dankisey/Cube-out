@@ -1,11 +1,14 @@
 ﻿using UnityEngine.SceneManagement;
 
-public class ShopButton : CustomButton
+namespace Game.UI.Buttons
 {
-    private const string Shop = nameof(Shop);
-
-    protected override void OnButtonClick()
+    public class ShopButton : CustomButton
     {
-        SceneManager.LoadScene(Shop);
+        private const string Shop = nameof(Shop);
+
+        protected override void OnButtonClick()
+        {
+            SceneManager.LoadScene(Shop);
+        }
     }
 }

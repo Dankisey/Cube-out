@@ -1,9 +1,12 @@
 using UnityEngine.SceneManagement;
 
-public class RetryButton : CustomButton
+namespace Game.UI.Buttons
 {
-    protected override void OnButtonClick()
+    public class RetryButton : CustomButton
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        protected override void OnButtonClick()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
     }
 }

@@ -1,11 +1,14 @@
 using UnityEngine.SceneManagement;
 
-public class MainMenuButton : CustomButton
+namespace Game.UI.Buttons
 {
-    private const string MainMenu = nameof(MainMenu);
-
-    protected override void OnButtonClick()
+    public class MainMenuButton : CustomButton
     {
-        SceneManager.LoadScene(MainMenu);
+        private const string MainMenu = nameof(MainMenu);
+
+        protected override void OnButtonClick()
+        {
+            SceneManager.LoadScene(MainMenu);
+        }
     }
 }

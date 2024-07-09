@@ -1,22 +1,25 @@
 using UnityEngine;
 using DG.Tweening;
 
-public class BreatheAnimation : MonoBehaviour
+namespace Game.UI
 {
-    [SerializeField] private Transform _target;
-    [SerializeField] private float _endScaleFactor;
-    [SerializeField] private float _duration;
-
-    private Tween _tween;
-
-    private void OnEnable()
+    public class BreatheAnimation : MonoBehaviour
     {
-        _tween = _target.DOScale(_endScaleFactor, _duration).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutQuad);
-        Time.timeScale = 1;
-    }
+        [SerializeField] private Transform _target;
+        [SerializeField] private float _endScaleFactor;
+        [SerializeField] private float _duration;
 
-    private void OnDisable()
-    {
-        _tween?.Kill();
+        private Tween _tween;
+
+        private void OnEnable()
+        {
+            _tween = _target.DOScale(_endScaleFactor, _duration).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutQuad);
+            Time.timeScale = 1;
+        }
+
+        private void OnDisable()
+        {
+            _tween?.Kill();
+        }
     }
 }

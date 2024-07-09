@@ -1,43 +1,47 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using Game.Level;
 using TMPro;
 
-public class LevelLoadButton : CustomButton
+namespace Game.UI.Buttons
 {
-    [SerializeField] private LevelLoader _levelLoader;
-    [SerializeField] private TMP_Text _label;
-    [SerializeField] private Color _textDisabledColor;
-    [SerializeField] private Image _lockImage;
-    [SerializeField] private int _levelIndex;
-
-    public void Initialize(int maxAvailableLevel)
+    public class LevelLoadButton : CustomButton
     {
-        if (_levelIndex <= maxAvailableLevel)
-            Unlock();
-    }
+        [SerializeField] private Loader _loader;
+        [SerializeField] private TMP_Text _label;
+        [SerializeField] private Color _textDisabledColor;
+        [SerializeField] private Image _lockImage;
+        [SerializeField] private int _levelIndex;
 
-    protected override void OnAwake()
-    {
-        _label.text = $"{_levelIndex}";
-        Lock();
-    }
+        public void Initialize(int maxAvailableLevel)
+        {
+            if (_levelIndex <= maxAvailableLevel)
+                Unlock();
+        }
 
-    protected override void OnButtonClick()
-    {
-        _levelLoader.TryLoadLevel(_levelIndex);
-    }
+        protected override void OnAwake()
+        {
+            _label.text = $"{_levelIndex}";
+            Lock();
+        }
 
-    private void Lock()
-    {
-        _label.color = _textDisabledColor;
-        _lockImage.enabled = true;
-        DisableButtonInteractions();
-    }
+        protected override void OnButtonClick()
+        {
+            _loader.TryLoadLevel(_levelIndex);
+        }
 
-    private void Unlock()
-    {
-        _label.color = Color.black;
-        _lockImage.enabled = false;
-        EnableButtonInteractions();
+        private void Lock()
+        {
+            _label.color = _textDisabledColor;
+            _lockImage.enabled = true;
+            DisableButtonInteractions();
+        }
+
+        private void Unlock()
+        {
+            _label.color = Color.black;
+            _lockImage.enabled = false;
+            EnableButtonInteractions();
+        }
     }
 }

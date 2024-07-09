@@ -1,20 +1,23 @@
 ﻿using UnityEngine;
 
-public class LevelButtonsInitializer : MonoBehaviour
+namespace Game.UI.Buttons
 {
-    [SerializeField] private ProgressSaver _progressSaver;
-    [SerializeField] private LevelLoadButton[] _buttons;
-
-    private void Start()
+    public class LevelButtonsInitializer : MonoBehaviour
     {
-        _progressSaver.LoadProgress(OnProgressLoaded);
-    }
+        [SerializeField] private ProgressSaver _progressSaver;
+        [SerializeField] private LevelLoadButton[] _buttons;
 
-    private void OnProgressLoaded()
-    {
-        int maxAvailableLevel = _progressSaver.GetLastCompletedLevelIndex();
+        private void Start()
+        {
+            _progressSaver.LoadProgress(OnProgressLoaded);
+        }
 
-        foreach (LevelLoadButton button in _buttons)
-            button.Initialize(maxAvailableLevel);
+        private void OnProgressLoaded()
+        {
+            int maxAvailableLevel = _progressSaver.GetLastCompletedLevelIndex();
+
+            foreach (LevelLoadButton button in _buttons)
+                button.Initialize(maxAvailableLevel);
+        }
     }
 }

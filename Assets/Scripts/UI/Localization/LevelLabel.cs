@@ -1,29 +1,32 @@
 using UnityEngine.SceneManagement;
 
-public class LevelLabel : TranslatingLabel
+namespace Localization
 {
-    private const string Level = nameof(Level);
-
-    protected override string GetText()
+    public class LevelLabel : TranslatingLabel
     {
-        int levelNumber = GetLevelNumber();
+        private const string Level = nameof(Level);
 
-        return $"{GetTranslation(Level)} {levelNumber}";
-    }
-
-    private int GetLevelNumber()
-    {
-        int levelNumber = 0;
-
-        string sceneName = SceneManager.GetActiveScene().name;
-        string[] sceneNameParts = sceneName.Split(' ');
-
-        foreach (string sceneNamePart in sceneNameParts)
+        protected override string GetText()
         {
-            if (int.TryParse(sceneNamePart, out levelNumber))
-                return levelNumber;
+            int levelNumber = GetLevelNumber();
+
+            return $"{GetTranslation(Level)} {levelNumber}";
         }
 
-        return levelNumber;
+        private int GetLevelNumber()
+        {
+            int levelNumber = 0;
+
+            string sceneName = SceneManager.GetActiveScene().name;
+            string[] sceneNameParts = sceneName.Split(' ');
+
+            foreach (string sceneNamePart in sceneNameParts)
+            {
+                if (int.TryParse(sceneNamePart, out levelNumber))
+                    return levelNumber;
+            }
+
+            return levelNumber;
+        }
     }
 }

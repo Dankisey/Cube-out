@@ -1,23 +1,27 @@
 using UnityEngine;
+using Game.Bomb;
 using TMPro;
 
-public class BombsAmountDisplay : MonoBehaviour
+namespace Game.UI
 {
-    [SerializeField] private BombsHolder _holder;
-    [SerializeField] private TMP_Text _display;
-
-    private void OnEnable()
+    public class BombsAmountDisplay : MonoBehaviour
     {
-        _holder.BombsAmountChanged += OnBombsAmountChanged;
-    }
+        [SerializeField] private BombsHolder _holder;
+        [SerializeField] private TMP_Text _display;
 
-    private void OnDisable()
-    {
-        _holder.BombsAmountChanged -= OnBombsAmountChanged;
-    }
+        private void OnEnable()
+        {
+            _holder.BombsAmountChanged += OnBombsAmountChanged;
+        }
 
-    private void OnBombsAmountChanged(int amount)
-    {
-        _display.text = $"{amount}";
+        private void OnDisable()
+        {
+            _holder.BombsAmountChanged -= OnBombsAmountChanged;
+        }
+
+        private void OnBombsAmountChanged(int amount)
+        {
+            _display.text = $"{amount}";
+        }
     }
 }

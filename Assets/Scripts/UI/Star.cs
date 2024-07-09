@@ -1,27 +1,30 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Image))]
-public class Star : MonoBehaviour
+namespace Game.UI
 {
-    [SerializeField] private Color _disabledColor;
-    [SerializeField] private Color _enabledColor;
-
-    private Image _image;
-
-    private void Awake()
+    [RequireComponent(typeof(Image))]
+    public class Star : MonoBehaviour
     {
-        _image = GetComponent<Image>();
-        _image.color = _disabledColor;
-    }
+        [SerializeField] private Color _disabledColor;
+        [SerializeField] private Color _enabledColor;
 
-    public void Activate()
-    {
-        _image.color = _enabledColor;
-    }
+        private Image _image;
 
-    public void Deactivate()
-    {
-        _image.color = _disabledColor;
+        private void Awake()
+        {
+            _image = GetComponent<Image>();
+            _image.color = _disabledColor;
+        }
+
+        public void Activate()
+        {
+            _image.color = _enabledColor;
+        }
+
+        public void Deactivate()
+        {
+            _image.color = _disabledColor;
+        }
     }
 }
