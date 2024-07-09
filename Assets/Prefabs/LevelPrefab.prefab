@@ -1209,6 +1209,51 @@ Transform:
   m_Children: []
   m_Father: {fileID: 118429240156249514}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2794036227097760120
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5139145631059003147}
+  - component: {fileID: 675270457669057893}
+  m_Layer: 0
+  m_Name: YandexLeaderboard
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5139145631059003147
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2794036227097760120}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3493903069583264171}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &675270457669057893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2794036227097760120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33d472fd2b882ea408a23d4518001c3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _leaderboardView: {fileID: 0}
 --- !u!1 &2857138490163534946
 GameObject:
   m_ObjectHideFlags: 0
@@ -1436,7 +1481,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mapParent: {fileID: 97371967830537286}
-  _prefab: {fileID: 7733347845113726148, guid: 68716e67d08c74044b26a51109eedbc4, type: 3}
+  _prefab: {fileID: 6569691934974890682, guid: 68716e67d08c74044b26a51109eedbc4, type: 3}
   _mapSize: {x: 2, y: 2, z: 2}
 --- !u!1 &3029370354974322142
 GameObject:
@@ -2605,7 +2650,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c9b76e57c5a5f34192b96154c0e6b0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _loader: {fileID: 0}
+  _loader: {fileID: 8264567896211209036}
 --- !u!1 &4488575499804574414
 GameObject:
   m_ObjectHideFlags: 0
@@ -4201,6 +4246,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _progressObserver: {fileID: 4529678053452024105}
   _progressSaver: {fileID: 8447953668648388487}
+  _leaderBoard: {fileID: 675270457669057893}
 --- !u!1 &8673869498278871628
 GameObject:
   m_ObjectHideFlags: 0
@@ -4461,6 +4507,7 @@ Transform:
   - {fileID: 3214403413721959444}
   - {fileID: 2063876105943424022}
   - {fileID: 2219882050052855676}
+  - {fileID: 5139145631059003147}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &8000868414229927051
