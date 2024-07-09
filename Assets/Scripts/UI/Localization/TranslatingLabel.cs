@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Agava.YandexGames;
 using TMPro;
 
 namespace Localization
