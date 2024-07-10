@@ -7,7 +7,7 @@ namespace Localization
     [RequireComponent(typeof(TMP_Text))]
     public abstract class TranslatingLabel : MonoBehaviour
     {
-        [SerializeField] private Localization _localization;
+        [SerializeField] private Localizator _localization;
 
         private void OnEnable()
         {

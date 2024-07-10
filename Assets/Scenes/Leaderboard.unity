@@ -599,6 +599,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _container: {fileID: 1284464581}
   _elementPrefab: {fileID: 1653690326609042340, guid: 715f7bb724264a747bb085255a384f53, type: 3}
+  _localizator: {fileID: 2122588226}
 --- !u!114 &474717438
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using Localization;
 
 namespace LeaderBoard
 {
@@ -7,6 +8,7 @@ namespace LeaderBoard
     {
         [SerializeField] private Transform _container;
         [SerializeField] private LeaderboardElement _elementPrefab;
+        [SerializeField] private Localizator _localizator;
 
         private List<LeaderboardElement> _spawnedElements = new();
 
@@ -17,7 +19,7 @@ namespace LeaderBoard
             foreach (var player in leaderboardPlayers)
             {
                 LeaderboardElement elementInstance = Instantiate(_elementPrefab, _container);
-                elementInstance.Initialize(player.ImageURL, player.Name, player.Score, player.Rank);
+                elementInstance.Initialize(_localizator, player.ImageURL, player.Name, player.Score, player.Rank);
 
                 _spawnedElements.Add(elementInstance);
             }

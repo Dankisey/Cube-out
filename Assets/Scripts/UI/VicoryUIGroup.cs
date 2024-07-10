@@ -9,13 +9,11 @@ namespace Game.UI
 
         private void OnEnable()
         {
-
             _victoryController.LevelCompleted += TurnOn;
         }
 
         private void OnDisable()
         {
-
             _victoryController.LevelCompleted -= TurnOn;
         }
     }

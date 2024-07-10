@@ -291,6 +291,10 @@ PrefabInstance:
       value: LevelLoadButton (4)
       objectReference: {fileID: 0}
     - target: {fileID: 2803135282928623574, guid: 2d3327655dfcd7d4d92eb6a2be18bf55, type: 3}
+      propertyPath: _loader
+      value: 
+      objectReference: {fileID: 1638865675}
+    - target: {fileID: 2803135282928623574, guid: 2d3327655dfcd7d4d92eb6a2be18bf55, type: 3}
       propertyPath: _levelIndex
       value: 4
       objectReference: {fileID: 0}
@@ -522,6 +526,10 @@ PrefabInstance:
       value: LevelLoadButton (6)
       objectReference: {fileID: 0}
     - target: {fileID: 2803135282928623574, guid: 2d3327655dfcd7d4d92eb6a2be18bf55, type: 3}
+      propertyPath: _loader
+      value: 
+      objectReference: {fileID: 1638865675}
+    - target: {fileID: 2803135282928623574, guid: 2d3327655dfcd7d4d92eb6a2be18bf55, type: 3}
       propertyPath: _levelIndex
       value: 6
       objectReference: {fileID: 0}
@@ -646,6 +654,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelLoadButton (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 2803135282928623574, guid: 2d3327655dfcd7d4d92eb6a2be18bf55, type: 3}
+      propertyPath: _loader
+      value: 
+      objectReference: {fileID: 1638865675}
     - target: {fileID: 2803135282928623574, guid: 2d3327655dfcd7d4d92eb6a2be18bf55, type: 3}
       propertyPath: _levelIndex
       value: 5
@@ -865,7 +877,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee6a66330597642478f999c88e8e9b91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _levelLoader: {fileID: 1638865675}
+  _loader: {fileID: 0}
 --- !u!114 &832084432
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1040,6 +1052,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelLoadButton (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 2803135282928623574, guid: 2d3327655dfcd7d4d92eb6a2be18bf55, type: 3}
+      propertyPath: _loader
+      value: 
+      objectReference: {fileID: 1638865675}
     - target: {fileID: 2803135282928623574, guid: 2d3327655dfcd7d4d92eb6a2be18bf55, type: 3}
       propertyPath: _levelIndex
       value: 2
@@ -1450,6 +1466,10 @@ PrefabInstance:
       value: LevelLoadButton (8)
       objectReference: {fileID: 0}
     - target: {fileID: 2803135282928623574, guid: 2d3327655dfcd7d4d92eb6a2be18bf55, type: 3}
+      propertyPath: _loader
+      value: 
+      objectReference: {fileID: 1638865675}
+    - target: {fileID: 2803135282928623574, guid: 2d3327655dfcd7d4d92eb6a2be18bf55, type: 3}
       propertyPath: _levelIndex
       value: 8
       objectReference: {fileID: 0}
@@ -1575,6 +1595,10 @@ PrefabInstance:
       value: LevelLoadButton (9)
       objectReference: {fileID: 0}
     - target: {fileID: 2803135282928623574, guid: 2d3327655dfcd7d4d92eb6a2be18bf55, type: 3}
+      propertyPath: _loader
+      value: 
+      objectReference: {fileID: 1638865675}
+    - target: {fileID: 2803135282928623574, guid: 2d3327655dfcd7d4d92eb6a2be18bf55, type: 3}
       propertyPath: _levelIndex
       value: 9
       objectReference: {fileID: 0}
@@ -1699,6 +1723,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelLoadButton (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 2803135282928623574, guid: 2d3327655dfcd7d4d92eb6a2be18bf55, type: 3}
+      propertyPath: _loader
+      value: 
+      objectReference: {fileID: 1638865675}
     - target: {fileID: 2803135282928623574, guid: 2d3327655dfcd7d4d92eb6a2be18bf55, type: 3}
       propertyPath: _levelIndex
       value: 3
@@ -2114,6 +2142,10 @@ PrefabInstance:
       value: LevelLoadButton (7)
       objectReference: {fileID: 0}
     - target: {fileID: 2803135282928623574, guid: 2d3327655dfcd7d4d92eb6a2be18bf55, type: 3}
+      propertyPath: _loader
+      value: 
+      objectReference: {fileID: 1638865675}
+    - target: {fileID: 2803135282928623574, guid: 2d3327655dfcd7d4d92eb6a2be18bf55, type: 3}
       propertyPath: _levelIndex
       value: 7
       objectReference: {fileID: 0}
@@ -2466,6 +2498,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelLoadButton
       objectReference: {fileID: 0}
+    - target: {fileID: 2803135282928623574, guid: 2d3327655dfcd7d4d92eb6a2be18bf55, type: 3}
+      propertyPath: _loader
+      value: 
+      objectReference: {fileID: 1638865675}
     - target: {fileID: 2803135282928623574, guid: 2d3327655dfcd7d4d92eb6a2be18bf55, type: 3}
       propertyPath: _levelLoader
       value: 

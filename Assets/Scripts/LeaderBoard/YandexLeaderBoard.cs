@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Agava.YandexGames;
+using static UnityEngine.EventSystems.EventTrigger;
+using static System.Net.WebRequestMethods;
 
 namespace LeaderBoard
 {
@@ -26,11 +28,12 @@ namespace LeaderBoard
 
         public void Fill()
         {
+#if UNITY_WEBGL && !UNITY_EDITOR
             if (PlayerAccount.IsAuthorized == false)
                 return;
-
+#endif
             _leaderboardPlayers.Clear();
-
+#if UNITY_WEBGL && !UNITY_EDITOR
             Leaderboard.GetEntries(LeaderboardName, (entryResponse) =>
             {
                 foreach (var entry in entryResponse.entries)
@@ -48,6 +51,14 @@ namespace LeaderBoard
 
                 _leaderboardView.ConstructLeaderboard(_leaderboardPlayers);
             });
+#else
+            string imageURL = "https://i.pinimg.com/736x/b5/aa/1d/b5aa1d0993f7264c68857878edc4210c.jpg";
+            string name = "Тестовый чеч";
+            int score = 20;
+            int rank = 1;
+            _leaderboardPlayers.Add(new LeaderboardPlayer(imageURL, name, score, rank));
+            _leaderboardView.ConstructLeaderboard(_leaderboardPlayers);
+#endif
         }
 
         private void SetPlayerScore(int score)
@@ -61,5 +72,5 @@ namespace LeaderBoard
                     Leaderboard.SetScore(LeaderboardName, score);
             });
         }
-    }
+        }
 }

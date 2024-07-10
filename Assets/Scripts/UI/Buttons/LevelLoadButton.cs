@@ -15,7 +15,7 @@ namespace Game.UI.Buttons
 
         public void Initialize(int maxAvailableLevel)
         {
-            if (_levelIndex <= maxAvailableLevel)
+            if (_levelIndex <= maxAvailableLevel + 1)
                 Unlock();
         }
 

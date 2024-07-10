@@ -6,6 +6,6 @@ namespace LeaderBoard
     {
         [SerializeField] private YandexLeaderBoard _leaderboard;
 
-        private void Awake() => _leaderboard.Fill();
+        private void Start() => _leaderboard.Fill();
     }
 }

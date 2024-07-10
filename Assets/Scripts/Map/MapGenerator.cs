@@ -1,9 +1,10 @@
-using com.cyborgAssets.inspectorButtonPro;
 using UnityEngine;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using com.cyborgAssets.inspectorButtonPro;
 using Game.Cube;
+using Random = UnityEngine.Random;
 
 namespace Game.Level.Map
 {
@@ -12,6 +13,9 @@ namespace Game.Level.Map
         [SerializeField] private Transform _mapParent;
         [SerializeField] private Entity _prefab;
         [SerializeField] private Vector3Int _mapSize;
+        [SerializeField] private bool _useRandomValues;
+        [SerializeField] private Vector3Int _minSize;
+        [SerializeField] private Vector3Int _maxSize;
 
         private CubeDraft[,,] _mapDraft;
 
@@ -20,6 +24,12 @@ namespace Game.Level.Map
             _mapSize.x = Mathf.Abs(_mapSize.x);
             _mapSize.y = Mathf.Abs(_mapSize.y);
             _mapSize.z = Mathf.Abs(_mapSize.z);
+            _minSize.x = Mathf.Abs(_minSize.x);
+            _minSize.y = Mathf.Abs(_minSize.y);
+            _minSize.z = Mathf.Abs(_minSize.z);
+            _maxSize.x = Mathf.Abs(_maxSize.x);
+            _maxSize.y = Mathf.Abs(_maxSize.y);
+            _maxSize.z = Mathf.Abs(_maxSize.z);
         }
 
         [ProButton]
@@ -27,6 +37,13 @@ namespace Game.Level.Map
         {
             if (_mapSize.x == 0 || _mapSize.y == 0 || _mapSize.z == 0)
                 throw new ArgumentOutOfRangeException(nameof(_mapSize));
+
+            if (_useRandomValues)
+            {
+                _mapSize.x = Random.Range(_minSize.x, _maxSize.x + 1);
+                _mapSize.y = Random.Range(_minSize.y, _maxSize.y + 1);
+                _mapSize.z = Random.Range(_minSize.z, _maxSize.z + 1);
+            }
 
             if (_mapParent.childCount != 0)
             {

@@ -24,7 +24,9 @@ namespace Game.Level
 
         private void OnLevelCompleted()
         {
+#if UNITY_WEBGL && !UNITY_EDITOR
             _leaderBoard.IncreasePlayerScore();
+#endif
             _progressSaver.SaveCurrentLevelCompletition(OnProgressSaved);
         }
 

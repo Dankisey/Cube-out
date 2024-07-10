@@ -380,7 +380,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fc750b9be7c648438bdd81ac5607a48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pauseController: {fileID: 0}
+  _pauseController: {fileID: 3937514718876193618}
   _gameUI: {fileID: 6980111664883971032}
 --- !u!1 &199667897979104801
 GameObject:
