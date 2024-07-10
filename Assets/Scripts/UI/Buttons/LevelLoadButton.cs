@@ -13,9 +13,9 @@ namespace Game.UI.Buttons
         [SerializeField] private Image _lockImage;
         [SerializeField] private int _levelIndex;
 
-        public void Initialize(int maxAvailableLevel)
+        public void Initialize(int lastCompletedLevel)
         {
-            if (_levelIndex <= maxAvailableLevel + 1)
+            if (_levelIndex <= lastCompletedLevel + 1)
                 Unlock();
         }
 
