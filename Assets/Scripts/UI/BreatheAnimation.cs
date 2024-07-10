@@ -13,8 +13,7 @@ namespace Game.UI
 
         private void OnEnable()
         {
-            _tween = _target.DOScale(_endScaleFactor, _duration).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutQuad);
-            Time.timeScale = 1;
+            _tween = _target.DOScale(_endScaleFactor, _duration).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutQuad).SetUpdate(true);
         }
 
         private void OnDisable()

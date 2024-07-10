@@ -227,7 +227,8 @@ PrefabInstance:
       propertyPath: _useRandomValues
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2855335480658475483, guid: a9b3d80309c99f94aa784cfc458e70ab, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

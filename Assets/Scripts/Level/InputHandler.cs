@@ -22,12 +22,12 @@ namespace Game.Level
         private void Awake()
         {
             _camera = Camera.main;
-            _input ??= new PlayerInputActions();
             Time.timeScale = 1;
         }
 
         private void OnEnable()
         {
+            _input ??= new PlayerInputActions();
             _input.Enable();
             _input.Player.Tap.performed += OnTapped;
             _input.Player.Hold.performed += OnHoldStart;
