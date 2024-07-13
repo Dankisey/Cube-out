@@ -5,11 +5,13 @@ namespace Game.Level
     public class MusicController : MonoBehaviour
     {
         private const string IsMutedInSettings = nameof(IsMutedInSettings);
+        private const int True = 1;
+        private const int False = 0;
 
         [SerializeField] private BackgroundChangingObserver _backgroundChangingObserver;
         [SerializeField] private AudioSource _audioSource;
 
-        public bool IsMuted => PlayerPrefs.GetInt(IsMutedInSettings) == (int)BoolEnum.True;
+        public bool IsMuted => PlayerPrefs.GetInt(IsMutedInSettings) == True;
 
         private void Awake()
         {
@@ -22,7 +24,7 @@ namespace Game.Level
             }
             else
             {
-                PlayerPrefs.SetInt(IsMutedInSettings, (int)BoolEnum.False);
+                PlayerPrefs.SetInt(IsMutedInSettings, False);
             }
         }
 
@@ -40,13 +42,13 @@ namespace Game.Level
 
         public void MuteAll()
         {
-            PlayerPrefs.SetInt(IsMutedInSettings, (int)BoolEnum.True);
+            PlayerPrefs.SetInt(IsMutedInSettings, True);
             Mute();
         }
 
         public void UnmuteAll()
         {
-            PlayerPrefs.SetInt(IsMutedInSettings, (int)BoolEnum.False);
+            PlayerPrefs.SetInt(IsMutedInSettings, False);
             Unmute();
         }
 
@@ -72,12 +74,6 @@ namespace Game.Level
                 return;
 
             Mute();
-        }
-
-        private enum BoolEnum
-        {
-            False = 0,
-            True = 1
         }
     }
 }
