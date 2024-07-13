@@ -13,6 +13,8 @@ namespace Game
 
         [SerializeField] private LevelSettings _levelSettings;
 
+        private Action<int> _checkLevelsCallback = null;
+
         public void SaveCurrentLevelCompletition(Action callback)
         {
             string levelName = SceneManager.GetActiveScene().name;
@@ -20,10 +22,10 @@ namespace Game
             PlayerPrefs.SetInt(levelName, _levelSettings.MaxStars);
 
 #if UNITY_WEBGL && !UNITY_EDITOR
-        PlayerPrefs.Save(onSuccessCallback : callback);
+            PlayerPrefs.Save(onSuccessCallback : callback);
 #else
             PlayerPrefs.Save();
-            callback?.Invoke();
+            callback.Invoke();
 #endif
         }
 
@@ -33,16 +35,31 @@ namespace Game
             PlayerPrefs.Save();
         }
 
-        public void LoadProgress(Action callback)
+        public void CheckLastCompletedLevelIndex(Action<int> callback)
         {
+            if (_checkLevelsCallback != null)
+                _checkLevelsCallback += callback;
+            else
+                _checkLevelsCallback = callback;
+
 #if UNITY_WEBGL && !UNITY_EDITOR
-        PlayerPrefs.Load(onSuccessCallback : callback);
+            PlayerPrefs.Load(onSuccessCallback: CheckLevels);
 #else
-            callback?.Invoke();
+            CheckLevels();
 #endif
         }
 
-        public int GetLastCompletedLevelIndex()
+        public int GetLevelsAmount()
+        {
+            return _levelSettings.AvailableLevels;
+        }
+
+        public int GetMaxStars()
+        {
+            return _levelSettings.MaxStars;
+        }
+
+        private void CheckLevels()
         {
             int lastCompletedLevelIndex = 0;
 
@@ -54,17 +71,8 @@ namespace Game
                     break;
             }
 
-            return lastCompletedLevelIndex;
-        }
-
-        public int GetLevelsAmount()
-        {
-            return _levelSettings.AvailableLevels;
-        }
-
-        public int GetMaxStars()
-        {
-            return _levelSettings.MaxStars;
+            _checkLevelsCallback.Invoke(lastCompletedLevelIndex);
+            _checkLevelsCallback = null;
         }
     }
 }

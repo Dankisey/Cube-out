@@ -9,15 +9,13 @@ namespace Game.UI.Buttons
 
         private void Start()
         {
-            _progressSaver.LoadProgress(OnProgressLoaded);
+            _progressSaver.CheckLastCompletedLevelIndex(OnLastCompletedLevelRecieved);
         }
 
-        private void OnProgressLoaded()
+        private void OnLastCompletedLevelRecieved(int completedLevel)
         {
-            int maxAvailableLevel = _progressSaver.GetLastCompletedLevelIndex();
-
             foreach (LevelLoadButton button in _buttons)
-                button.Initialize(maxAvailableLevel);
+                button.Initialize(completedLevel);
         }
     }
 }

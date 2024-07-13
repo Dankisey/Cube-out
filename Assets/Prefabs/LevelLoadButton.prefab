@@ -135,7 +135,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3e361982416dde44ad61f59406f9c16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _levelLoader: {fileID: 0}
+  _button: {fileID: 2299361756907661041}
+  _loader: {fileID: 0}
   _label: {fileID: 8023191898279602699}
   _textDisabledColor: {r: 0.1792453, g: 0.1792453, b: 0.1792453, a: 0.5019608}
   _lockImage: {fileID: 2350150509648120208}

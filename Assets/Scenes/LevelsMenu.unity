@@ -825,6 +825,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be9a65b77b259b44aaa22086ad82fd18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _button: {fileID: 674091547}
 --- !u!1 &832084429
 GameObject:
   m_ObjectHideFlags: 0
@@ -877,6 +878,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee6a66330597642478f999c88e8e9b91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _button: {fileID: 832084432}
   _loader: {fileID: 1638865675}
 --- !u!114 &832084432
 MonoBehaviour:
@@ -1291,6 +1293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46612754b792bb74ab997c9c9d8f35f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _button: {fileID: 1255079748}
 --- !u!114 &1255079748
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2509,6 +2512,10 @@ PrefabInstance:
       value: LevelLoadButton
       objectReference: {fileID: 0}
     - target: {fileID: 2803135282928623574, guid: 2d3327655dfcd7d4d92eb6a2be18bf55, type: 3}
+      propertyPath: _button
+      value: 
+      objectReference: {fileID: 2389571709072747623}
+    - target: {fileID: 2803135282928623574, guid: 2d3327655dfcd7d4d92eb6a2be18bf55, type: 3}
       propertyPath: _loader
       value: 
       objectReference: {fileID: 1638865675}
@@ -2534,6 +2541,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e3e361982416dde44ad61f59406f9c16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2389571709072747623 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2299361756907661041, guid: 2d3327655dfcd7d4d92eb6a2be18bf55, type: 3}
+  m_PrefabInstance: {fileID: 2389571709072747621}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807

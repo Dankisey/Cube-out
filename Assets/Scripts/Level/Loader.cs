@@ -13,16 +13,7 @@ namespace Game.Level
 
         public void LoadLastAvailableLevel()
         {
-            int lastAvailableLevelIndex = _progressSaver.GetLastCompletedLevelIndex() + 1;
-            int levelsAmount = _progressSaver.GetLevelsAmount();
-
-            if (levelsAmount <= 0)
-                throw new ArgumentOutOfRangeException(nameof(levelsAmount));
-
-            if (lastAvailableLevelIndex <= levelsAmount)
-                TryLoadLevel(lastAvailableLevelIndex);
-            else
-                LoadInfiniteLevel();
+             _progressSaver.CheckLastCompletedLevelIndex(OnLastCompletedLevelIndexRecieved);
         }
 
         public void LoadInfiniteLevel()
@@ -38,6 +29,20 @@ namespace Game.Level
             SceneManager.LoadScene($"{Level} {levelIndex}");
 
             return true;
+        }
+
+        private void OnLastCompletedLevelIndexRecieved(int lastCompletedLevelIndex)
+        {
+            int lastAvailableLevelIndex = lastCompletedLevelIndex + 1;
+            int levelsAmount = _progressSaver.GetLevelsAmount();
+
+            if (levelsAmount <= 0)
+                throw new ArgumentOutOfRangeException(nameof(levelsAmount));
+
+            if (lastAvailableLevelIndex <= levelsAmount)
+                TryLoadLevel(lastAvailableLevelIndex);
+            else
+                LoadInfiniteLevel();
         }
     }
 }

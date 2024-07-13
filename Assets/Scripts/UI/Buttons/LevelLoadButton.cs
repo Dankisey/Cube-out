@@ -13,16 +13,16 @@ namespace Game.UI.Buttons
         [SerializeField] private Image _lockImage;
         [SerializeField] private int _levelIndex;
 
+        private void Awake()
+        {
+            _label.text = $"{_levelIndex}";
+            Lock();
+        }
+
         public void Initialize(int lastCompletedLevel)
         {
             if (_levelIndex <= lastCompletedLevel + 1)
                 Unlock();
-        }
-
-        protected override void OnAwake()
-        {
-            _label.text = $"{_levelIndex}";
-            Lock();
         }
 
         protected override void OnButtonClick()

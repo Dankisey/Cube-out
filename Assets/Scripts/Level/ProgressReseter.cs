@@ -10,8 +10,11 @@ namespace Game
         [ProButton]
         public void ResetProgress()
         {
-            int lastCompletedLevel = _progressSaver.GetLastCompletedLevelIndex();
+            _progressSaver.CheckLastCompletedLevelIndex(OnLastCompletedLevelIndexRecieved);     
+        }
 
+        private void OnLastCompletedLevelIndexRecieved(int lastCompletedLevel)
+        {
             for (int i = 1; i <= lastCompletedLevel; i++)
                 _progressSaver.DeleteLevelProgress(i);
         }

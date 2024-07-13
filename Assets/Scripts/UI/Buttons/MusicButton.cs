@@ -11,18 +11,18 @@ namespace Game.UI.Buttons
         [SerializeField] private Sprite _unmuted;
         [SerializeField] private Sprite _muted;
 
+        private void Awake()
+        {
+            Sprite currentState = _musicController.IsMuted ? _muted : _unmuted;
+            _buttonImage.sprite = currentState;
+        }
+
         protected override void OnButtonClick()
         {
             if (_musicController.IsMuted)
                 Unmute();
             else
                 Mute();
-        }
-
-        protected override void OnAwake()
-        {
-            Sprite currentState = _musicController.IsMuted ? _muted : _unmuted;
-            _buttonImage.sprite = currentState;
         }
 
         private void Mute()
