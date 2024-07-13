@@ -9,24 +9,11 @@ namespace Game
         private const int True = 1;
         private const int False = 0;
 
-        public bool IsPlayerAuthorized
-        {
-            get
-            {
 #if UNITY_WEBGL && !UNITY_EDITOR
-                return PlayerAccount.IsAuthorized;
+        public bool IsPlayerAuthorized => PlayerAccount.IsAuthorized;
 #else
-                return IsPlayerAuthorized;
+        public bool IsPlayerAuthorized { get; private set; } = false;
 #endif
-            }
-
-            private set
-            {
-                IsPlayerAuthorized = value;
-            }
-        }
-
-        public bool IsPersonalDataAllowed => GetDataPermission();
 
         public void Authorize()
         {
@@ -44,25 +31,6 @@ namespace Game
 #else
             callback.Invoke();
 #endif
-        }
-
-        public void AllowDataRequest()
-        {
-            PlayerPrefs.SetInt(nameof(IsPersonalDataAllowed), True);
-        }
-
-        private bool GetDataPermission()
-        {
-            if (PlayerPrefs.HasKey(nameof(IsPersonalDataAllowed)) == false)
-            {
-                PlayerPrefs.SetInt(nameof(IsPersonalDataAllowed), False);
-
-                return false;
-            }
-
-            int value = PlayerPrefs.GetInt(nameof(IsPersonalDataAllowed));
-
-            return value == True;
         }
     }
 }
