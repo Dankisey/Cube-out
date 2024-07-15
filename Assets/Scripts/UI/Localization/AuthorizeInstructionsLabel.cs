@@ -4,6 +4,6 @@
     {
         private const string AuthorizeInstructions = nameof(AuthorizeInstructions);
 
-        protected override string GetText() => GetTranslation(AuthorizeInstructions);
+        protected override string GetPhraseCode() => AuthorizeInstructions;
     }
 }

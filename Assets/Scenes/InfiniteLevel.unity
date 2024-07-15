@@ -123,6 +123,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &690067782 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5146135949059155375, guid: a9b3d80309c99f94aa784cfc458e70ab, type: 3}
+  m_PrefabInstance: {fileID: 400983824640477493}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a703b853efd61e4d8f08a51fee614ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &400983824640477493
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -143,6 +154,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.7
       objectReference: {fileID: 0}
+    - target: {fileID: 2573674844522480108, guid: a9b3d80309c99f94aa784cfc458e70ab, type: 3}
+      propertyPath: _localizator
+      value: 
+      objectReference: {fileID: 690067782}
     - target: {fileID: 3271250269462163637, guid: a9b3d80309c99f94aa784cfc458e70ab, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -183,10 +198,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4796035328978557284, guid: a9b3d80309c99f94aa784cfc458e70ab, type: 3}
+      propertyPath: _localizator
+      value: 
+      objectReference: {fileID: 690067782}
     - target: {fileID: 6952536423606368562, guid: a9b3d80309c99f94aa784cfc458e70ab, type: 3}
       propertyPath: m_Name
       value: InfiniteLevelPrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 7519905081150145460, guid: a9b3d80309c99f94aa784cfc458e70ab, type: 3}
+      propertyPath: _localizator
+      value: 
+      objectReference: {fileID: 690067782}
     - target: {fileID: 7821221151020552794, guid: a9b3d80309c99f94aa784cfc458e70ab, type: 3}
       propertyPath: _mapSize.x
       value: 5

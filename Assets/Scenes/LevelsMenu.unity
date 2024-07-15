@@ -1978,7 +1978,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dad73d81e2fbbf14ab73fbecaa8e270b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _localization: {fileID: 1413710691}
+  _localizator: {fileID: 1413710691}
 --- !u!1 &1638865672
 GameObject:
   m_ObjectHideFlags: 0

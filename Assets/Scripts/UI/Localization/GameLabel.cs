@@ -4,6 +4,6 @@
     {
         private const string GameName = nameof(GameName);
 
-        protected override string GetText() => GetTranslation(GameName);
+        protected override string GetPhraseCode() => GameName;
     }
 }

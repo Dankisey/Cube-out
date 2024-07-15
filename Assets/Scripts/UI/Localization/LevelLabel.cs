@@ -6,12 +6,9 @@ namespace Localization
     {
         private const string Level = nameof(Level);
 
-        protected override string GetText()
-        {
-            int levelNumber = GetLevelNumber();
+        protected override string GetPhraseCode() => Level;
 
-            return $"{GetTranslation(Level)} {levelNumber}";
-        }
+        protected override void OnTextSetted() => AddText($" {GetLevelNumber()}");
 
         private int GetLevelNumber()
         {

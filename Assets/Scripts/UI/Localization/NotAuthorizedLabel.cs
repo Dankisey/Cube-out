@@ -4,6 +4,6 @@
     {
         private const string NotAuthorized = nameof(NotAuthorized);
 
-        protected override string GetText() => GetTranslation(NotAuthorized);
+        protected override string GetPhraseCode() => NotAuthorized;
     }
 }

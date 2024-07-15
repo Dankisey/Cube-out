@@ -2,16 +2,8 @@ namespace Localization
 {
     public class InfiniteLevelLabel : TranslatingLabel
     {
-        private const string Infinite = nameof(Infinite);
-        private const string Level = nameof(Level);
+        private const string InfiniteLevel = nameof(InfiniteLevel);
 
-        protected override string GetText()
-        {
-            string infinite = GetTranslation(Infinite);
-            string level = GetTranslation(Level);
-
-            return $"{infinite} {level}";
-        }
+        protected override string GetPhraseCode() => InfiniteLevel;
     }
-
 }

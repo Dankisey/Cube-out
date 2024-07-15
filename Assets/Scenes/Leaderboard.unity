@@ -1277,7 +1277,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dad73d81e2fbbf14ab73fbecaa8e270b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _localization: {fileID: 2122588226}
+  _localizator: {fileID: 2122588226}
 --- !u!114 &1660852444
 MonoBehaviour:
   m_ObjectHideFlags: 0

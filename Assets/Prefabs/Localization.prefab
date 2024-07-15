@@ -94,6 +94,55 @@ MonoBehaviour:
   _translatedText: 'Cubes
 
     Out'
+--- !u!1 &400929765264484679
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8366653726288220618}
+  - component: {fileID: 6059183650445587193}
+  m_Layer: 0
+  m_Name: Russian
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8366653726288220618
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 400929765264484679}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4868708810525159715}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6059183650445587193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 400929765264484679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 280b658e807a1a54bb1b7de547da37bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Language>k__BackingField: Russian
+  _translatedText: "\u0423 \u0432\u0430\u0441 \u043D\u0435\u0434\u043E\u0441\u0442\u0430\u0442\u043E\u0447\u043D\u043E
+    \u0431\u043E\u043C\u0431. \u0425\u043E\u0442\u0438\u0442\u0435 \u043F\u043E\u0441\u043C\u043E\u0442\u0440\u0435\u0442\u044C
+    \u0440\u0435\u043A\u043B\u0430\u043C\u0443, \u0447\u0442\u043E\u0431\u044B \u043F\u043E\u043B\u0443\u0447\u0438\u0442\u044C
+    \u0431\u043E\u043C\u0431\u0443?"
 --- !u!1 &666202462437978203
 GameObject:
   m_ObjectHideFlags: 0
@@ -382,7 +431,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Language>k__BackingField: English
-  _translatedText: Infinite
+  _translatedText: Infinite Level
 --- !u!1 &2234160348675154904
 GameObject:
   m_ObjectHideFlags: 0
@@ -481,6 +530,53 @@ MonoBehaviour:
   - {fileID: 5624817151074930007}
   - {fileID: 3976271004742868500}
   <Code>k__BackingField: AuthorizeInstructions
+--- !u!1 &2551380329017199074
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8280733538582490001}
+  - component: {fileID: 6287571382606496143}
+  m_Layer: 0
+  m_Name: Turkish
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8280733538582490001
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2551380329017199074}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4868708810525159715}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6287571382606496143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2551380329017199074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 280b658e807a1a54bb1b7de547da37bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Language>k__BackingField: Turkish
+  _translatedText: "Yeterince bomban yok. Bomba almak i\xE7in bir reklam izlemek
+    ister misin?"
 --- !u!1 &2894263220050416851
 GameObject:
   m_ObjectHideFlags: 0
@@ -754,6 +850,7 @@ Transform:
   - {fileID: 2138540529797136101}
   - {fileID: 2643429809870461386}
   - {fileID: 3369492954867057144}
+  - {fileID: 4868708810525159715}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3853799880518633530
@@ -776,6 +873,7 @@ MonoBehaviour:
   - {fileID: 3974983548769267814}
   - {fileID: 3886124736845592507}
   - {fileID: 4833878381263910998}
+  - {fileID: 4571335974537997720}
   _currentLanguage: Russian
 --- !u!1 &4315455825497006025
 GameObject:
@@ -1013,6 +1111,105 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Language>k__BackingField: English
   _translatedText: Rank
+--- !u!1 &5358567581850188541
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4868708810525159715}
+  - component: {fileID: 4571335974537997720}
+  m_Layer: 0
+  m_Name: AdSuggestion
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4868708810525159715
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5358567581850188541}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8366653726288220618}
+  - {fileID: 2417346704818054391}
+  - {fileID: 8280733538582490001}
+  m_Father: {fileID: 8198329885496427511}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4571335974537997720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5358567581850188541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7268093084256cc40ad89852d8a0bc98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _translations:
+  - {fileID: 6059183650445587193}
+  - {fileID: 3349892622159511197}
+  - {fileID: 6287571382606496143}
+  <Code>k__BackingField: AdSuggestion
+--- !u!1 &5745132162435351231
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2417346704818054391}
+  - component: {fileID: 3349892622159511197}
+  m_Layer: 0
+  m_Name: English
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2417346704818054391
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5745132162435351231}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4868708810525159715}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3349892622159511197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5745132162435351231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 280b658e807a1a54bb1b7de547da37bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Language>k__BackingField: English
+  _translatedText: You don't have enough bombs. Do you want to watch an advert to
+    get a bomb?
 --- !u!1 &6723730744483414630
 GameObject:
   m_ObjectHideFlags: 0
@@ -1104,7 +1301,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Language>k__BackingField: Turkish
-  _translatedText: Sonsuz
+  _translatedText: Sonsuz Seviye
 --- !u!1 &7091376940054227957
 GameObject:
   m_ObjectHideFlags: 0
@@ -1204,7 +1401,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Language>k__BackingField: Russian
-  _translatedText: "\u0411\u0435\u0441\u043A\u043E\u043D\u0435\u0447\u043D\u044B\u0439"
+  _translatedText: "\u0411\u0435\u0441\u043A\u043E\u043D\u0435\u0447\u043D\u044B\u0439
+    \u0423\u0440\u043E\u0432\u0435\u043D\u044C"
 --- !u!1 &8127482408994447649
 GameObject:
   m_ObjectHideFlags: 0
@@ -1216,7 +1414,7 @@ GameObject:
   - component: {fileID: 2933395651377897229}
   - component: {fileID: 4508430204495910712}
   m_Layer: 0
-  m_Name: Infinite
+  m_Name: InfiniteLevel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1256,7 +1454,7 @@ MonoBehaviour:
   - {fileID: 5075940819405160809}
   - {fileID: 3430239802159611812}
   - {fileID: 3262175327617892226}
-  <Code>k__BackingField: Infinite
+  <Code>k__BackingField: InfiniteLevel
 --- !u!1 &8234907834556503246
 GameObject:
   m_ObjectHideFlags: 0

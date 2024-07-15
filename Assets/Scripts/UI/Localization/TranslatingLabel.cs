@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using Agava.YandexGames;
 using TMPro;
 
 namespace Localization
@@ -7,46 +6,29 @@ namespace Localization
     [RequireComponent(typeof(TMP_Text))]
     public abstract class TranslatingLabel : MonoBehaviour
     {
-        [SerializeField] private Localizator _localization;
+        [SerializeField] private Localizator _localizator;
 
-        private void OnEnable()
+        private TMP_Text _tmpText;
+
+        private void Awake()
         {
-            TMP_Text tmpText = GetComponent<TMP_Text>();
-            string languageCode = GetCurrentLanguageCode();
-            SetLanguage(GetCurrentLanguage(languageCode));
-            tmpText.text = GetText();
+            _tmpText = GetComponent<TMP_Text>();
+            string phraseCode = GetPhraseCode();
+            RequestTranslation(phraseCode);
         }
 
-        protected abstract string GetText();
+        protected void AddText(string text) => _tmpText.text += text;
+        
+        protected abstract string GetPhraseCode();
 
-        protected string GetTranslation(string phraseName)
-        {
-            return _localization.GetTranslation(phraseName);
-        }
+        protected virtual void OnTextSetted() { }
 
-        private string GetCurrentLanguageCode()
-        {
-#if UNITY_WEBGL && !UNITY_EDITOR
-        return YandexGamesSdk.Environment.i18n.lang.Trim();
-#else
-            return "ru";
-#endif
-        }
+        private void RequestTranslation(string phraseName) => _localizator.GetTranslation(phraseName, UpdateText);
 
-        private string GetCurrentLanguage(string languageCode)
+        private void UpdateText(string text)
         {
-            return languageCode switch
-            {
-                "ru" => "Russian",
-                "en" => "English",
-                "tr" => "Turkish",
-                _ => "English"
-            };
-        }
-
-        private void SetLanguage(string language)
-        {
-            _localization.ChangeLanguage(language);
+            _tmpText.text = text;
+            OnTextSetted();
         }
     }
 }
