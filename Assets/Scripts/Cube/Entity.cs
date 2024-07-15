@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.InputSystem.HID;
 
 namespace Game.Cube
 {
@@ -12,10 +14,8 @@ namespace Game.Cube
         [SerializeField] private Movement _movement;
         [SerializeField] private MeshRenderer _movableModel;
         [SerializeField] private MeshRenderer _frozenModel;
-        [SerializeField] private float _maxCubesDistance = 1.1f;
 
         private TrembleAnimator _animator;
-        private float _sqrMaxCubesDistance;
 
         public int BumpsCount { get; private set; } = 0;
         public bool IsFrozen { get; private set; } = false;
@@ -25,13 +25,13 @@ namespace Game.Cube
         public Vector3 MovementDirection => _movement.Direction;
 
         public event Action<Entity> Destroying;
+        public event Action Frozen;
 
         private void Awake()
         {
             _movableModel.gameObject.SetActive(true);
             _frozenModel.gameObject.SetActive(false);
             _movement = GetComponent<Movement>();
-            _sqrMaxCubesDistance = _maxCubesDistance * _maxCubesDistance;
         }
 
         private void OnDestroy()
@@ -76,13 +76,11 @@ namespace Game.Cube
                 return;
 
             IsInteractable = false;
-            Vector3 direction = transform.up;
-            RaycastHit[] hits = Physics.RaycastAll(transform.position, direction);
+            RaycastHit[] hits = Physics.RaycastAll(transform.position, MovementDirection);
 
             if (CheckObstacles(hits, out List<Entity> obstacles, out RaycastHit first))
             {
                 Vector3 target = first.collider.transform.localPosition + transform.parent.InverseTransformDirection(first.normal);
-
 
                 float time = first.distance / _settings.MovementSpeed;
                 _movement.MoveTo(target, time);
@@ -126,8 +124,10 @@ namespace Game.Cube
         }
 
         private bool CheckObstacles(RaycastHit[] hits, out List<Entity> obstacles, out RaycastHit first)
-        {
+        {    
             obstacles = new List<Entity>();
+            Vector3 selfPosition = transform.position;
+            hits = hits.OrderBy(hit => GetSqrMagnitude(selfPosition, hit.point)).ToArray();
             first = default;
 
             for (int i = 0; i < hits.Length; i++)
@@ -137,17 +137,8 @@ namespace Game.Cube
                     if (cube.IsMovingOut)
                         continue;
 
-                    if (obstacles.Count > 0)
-                    {
-                        Vector3 lastObstaclePosition = obstacles[^1].transform.localPosition;
-                        Vector3 currentObstaclePosition = cube.transform.localPosition;
-
-                        if ((lastObstaclePosition - currentObstaclePosition).sqrMagnitude > _sqrMaxCubesDistance)
-                            break;
-                    }
-
-                    if (obstacles.Count == 0)
-                        first = hits[i];
+                    if (obstacles.Count == 0)                   
+                        first = hits[i];             
 
                     obstacles.Add(cube);
 
@@ -169,6 +160,7 @@ namespace Game.Cube
                 IsFrozen = true;
                 _movableModel.gameObject.SetActive(false);
                 _frozenModel.gameObject.SetActive(true);
+                Frozen?.Invoke();
             }
 
             return IsFrozen;
@@ -196,6 +188,9 @@ namespace Game.Cube
 
             IsInteractable = true;
         }
+
+        private float GetSqrMagnitude(Vector3 firstPosition, Vector3 secondPosition) => 
+            (secondPosition - firstPosition).sqrMagnitude;
     }
 
     public enum Directions
