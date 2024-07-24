@@ -700,7 +700,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _levelPauseController: {fileID: 3937514718876193618}
   _bombThrower: {fileID: 6277519949326947492}
-  _bombButton: {fileID: 824280688463091539}
   _rotator: {fileID: 3736971482831227344}
 --- !u!114 &6277519949326947492
 MonoBehaviour:
@@ -867,6 +866,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _button: {fileID: 824280688463091539}
+  _input: {fileID: 5032730426961017020}
   _bombHolder: {fileID: 3315808991834104450}
   _adShower: {fileID: 4117879466813653954}
   _mainGroup: {fileID: 6980111664883971032}

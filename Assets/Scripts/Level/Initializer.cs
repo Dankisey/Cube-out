@@ -9,6 +9,7 @@ namespace Game.Level
         [SerializeField] private Transform _mapHolder;
         [SerializeField] private TrembleAnimator _trembleAnimator;
         [SerializeField] private ProgressObserver _progressObserver;
+        [SerializeField] private MapObserver _mapObserver;
         [SerializeField] private InitializeStrategies _initializeStrategie;
         [SerializeField] private MapGenerator _generator;
 
@@ -23,6 +24,7 @@ namespace Game.Level
                 cube.Initialize(_trembleAnimator);
 
             _progressObserver.Initialize(cubes);
+            _mapObserver.Initialize(cubes);
         }
     }
 

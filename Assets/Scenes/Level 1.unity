@@ -309,17 +309,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3499479483915229439, guid: 68716e67d08c74044b26a51109eedbc4, type: 3}
   m_PrefabInstance: {fileID: 376016278}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &417286077 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3937514718876193618, guid: 42c80ab17fed39544ae862ada1fa53d0, type: 3}
-  m_PrefabInstance: {fileID: 1795435401}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d65b925ec9a7fc043aee8cbf316e0ee4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &910470744
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -519,10 +508,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3053787516894365627, guid: 42c80ab17fed39544ae862ada1fa53d0, type: 3}
-      propertyPath: _pauseController
-      value: 
-      objectReference: {fileID: 417286077}
     - target: {fileID: 3493903069583264171, guid: 42c80ab17fed39544ae862ada1fa53d0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

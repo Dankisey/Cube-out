@@ -14,20 +14,26 @@ namespace Game.Bomb
         [SerializeField] private Bomb _prefab;
         [SerializeField] private int _bombsOnStart = 3;
 
-        private int _bombsAmount;
+        public int BombsAmount { get; private set; }
 
         public event Action<int> BombsAmountChanged;
 
         private void Awake()
         {
             if (PlayerPrefs.HasKey(Bombs))
-                _bombsAmount = PlayerPrefs.GetInt(Bombs);
+                BombsAmount = PlayerPrefs.GetInt(Bombs);
             else
-                _bombsAmount = _bombsOnStart;
+                BombsAmount = _bombsOnStart;
         }
 
         private void Start()
         {
+            UpdateSavedBombsValue();
+        }
+
+        public void AddBomb()
+        {
+            BombsAmount++;
             UpdateSavedBombsValue();
         }
 
@@ -36,7 +42,7 @@ namespace Game.Bomb
             if (amount <= 0)
                 throw new ArgumentOutOfRangeException(nameof(amount));
 
-            _bombsAmount += amount;
+            BombsAmount += amount;
             UpdateSavedBombsValue();
         }
 
@@ -44,11 +50,11 @@ namespace Game.Bomb
         {
             prefab = null;
 
-            if (_bombsAmount <= 0)
+            if (BombsAmount <= 0)
                 return false;
 
             prefab = _prefab;
-            _bombsAmount--;
+            BombsAmount--;
             UpdateSavedBombsValue();
 
             return true;
@@ -57,14 +63,14 @@ namespace Game.Bomb
         [ProButton]
         private void ResetBombsAmount()
         {
-            _bombsAmount = _bombsOnStart;
+            BombsAmount = _bombsOnStart;
             UpdateSavedBombsValue();
         }
 
         private void UpdateSavedBombsValue()
         {
-            BombsAmountChanged?.Invoke(_bombsAmount);
-            PlayerPrefs.SetInt(Bombs, _bombsAmount);
+            BombsAmountChanged?.Invoke(BombsAmount);
+            PlayerPrefs.SetInt(Bombs, BombsAmount);
             PlayerPrefs.Save();
         }
     }

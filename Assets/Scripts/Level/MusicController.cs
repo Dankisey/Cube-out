@@ -9,6 +9,7 @@ namespace Game.Level
         private const int False = 0;
 
         [SerializeField] private BackgroundChangingObserver _backgroundChangingObserver;
+        [SerializeField] private AdShower _adShower;
         [SerializeField] private AudioSource _audioSource;
 
         public bool IsMuted => PlayerPrefs.GetInt(IsMutedInSettings) == True;
@@ -32,12 +33,16 @@ namespace Game.Level
         {
             _backgroundChangingObserver.IsReturnedToApp += OnReturnedToApp;
             _backgroundChangingObserver.IsRunningInBackground += OnRunningInBackground;
+            _adShower.AdStarted += OnRunningInBackground;
+            _adShower.AdEnded += OnReturnedToApp;
         }
 
         private void OnDisable()
         {
             _backgroundChangingObserver.IsReturnedToApp -= OnReturnedToApp;
             _backgroundChangingObserver.IsRunningInBackground -= OnRunningInBackground;
+            _adShower.AdStarted -= OnRunningInBackground;
+            _adShower.AdEnded -= OnReturnedToApp;
         }
 
         public void MuteAll()

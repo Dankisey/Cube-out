@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Localization
 {
@@ -8,13 +7,16 @@ namespace Localization
     {
         [SerializeField] private List<Translation> _translations;
 
+        private Dictionary<string, Translation> _translationsDictionary = new();
+
         [field: SerializeField] public string Code { get; private set; }
 
-        public string GetTranslation(string language)
+        public void Initialize()
         {
-            Translation translation = _translations.Where(t => t.Language.ToLower() == language).FirstOrDefault();
-
-            return translation.TranslatedText;
+            foreach (var translation in _translations)
+                _translationsDictionary.Add(translation.Language.ToLower(), translation);
         }
+
+        public string GetTranslation(string language) => _translationsDictionary[language.ToLower()].TranslatedText;
     }
 }

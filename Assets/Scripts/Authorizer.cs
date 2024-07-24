@@ -6,13 +6,10 @@ namespace Game
 {
     public class Authorizer : MonoBehaviour
     {
-        private const int True = 1;
-        private const int False = 0;
-
 #if UNITY_WEBGL && !UNITY_EDITOR
         public bool IsPlayerAuthorized => PlayerAccount.IsAuthorized;
 #else
-        public bool IsPlayerAuthorized { get; private set; } = false;
+        public bool IsPlayerAuthorized { get; private set; }
 #endif
 
         public void Authorize()

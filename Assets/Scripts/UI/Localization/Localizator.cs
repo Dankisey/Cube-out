@@ -1,8 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using UnityEditor.Localization.Editor;
-using System;
+using UnityEngine;
 
 namespace Localization
 {
@@ -11,12 +9,14 @@ namespace Localization
         [SerializeField] private List<Phrase> _phrases;
         [SerializeField] private string _currentLanguage;
 
+        private Dictionary<string, Phrase> _phrasesDictionary = new();
         private Action _callbacksQueue = null;
         private bool _isInitialized = false;
 
         private void Awake()
         {
             string language = GetCurrentLanguage();
+            FillDictionary();
             ChangeLanguage(language);
         }
 
@@ -38,8 +38,7 @@ namespace Localization
             }
             else
             {
-                Phrase phrase = _phrases.Where(p => p.Code.ToLower() == phraseCode.ToLower()).FirstOrDefault();
-                string result =  phrase.GetTranslation(_currentLanguage);
+                string result = _phrasesDictionary[phraseCode].GetTranslation(_currentLanguage);
                 callback.Invoke(result);
             }    
         }
@@ -61,6 +60,15 @@ namespace Localization
                 "tr" => "Turkish",
                 _ => "English"
             };
+        }
+
+        private void FillDictionary()
+        {
+            foreach (var phrase in _phrases)
+            {
+                _phrasesDictionary.Add(phrase.Code, phrase);
+                phrase.Initialize();
+            }
         }
     }
 }

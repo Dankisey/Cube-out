@@ -11,7 +11,6 @@ namespace Game.Level
     {
         [SerializeField] private PauseController _levelPauseController;
         [SerializeField] private BombThrower _bombThrower;
-        [SerializeField] private Button _bombButton;
         [SerializeField] private Rotator _rotator;
 
         private PlayerInputActions _input;
@@ -32,7 +31,6 @@ namespace Game.Level
             _input.Player.Tap.performed += OnTapped;
             _input.Player.Hold.performed += OnHoldStart;
             _input.Player.Hold.canceled += OnHoldEnd;
-            _bombButton.onClick.AddListener(OnBombButtonClicked);
             _levelPauseController.IsPaused += OnGamePaused;
             _levelPauseController.IsResumed += OnGameResumed;
         }
@@ -43,7 +41,6 @@ namespace Game.Level
             _input.Player.Tap.performed -= OnTapped;
             _input.Player.Hold.performed -= OnHoldStart;
             _input.Player.Hold.canceled -= OnHoldEnd;
-            _bombButton.onClick.RemoveListener(OnBombButtonClicked);
             _levelPauseController.IsPaused -= OnGamePaused;
             _levelPauseController.IsResumed -= OnGameResumed;
         }
@@ -54,6 +51,11 @@ namespace Game.Level
                 _rotator.Rotate(_input.Player.TapDelta.ReadValue<Vector2>());
         }
 
+        public void ActivateBombAiming()
+        {
+            _isAimingBomb = true;
+        }
+
         private void OnGameResumed()
         {
             _input.Enable();
@@ -62,11 +64,6 @@ namespace Game.Level
         private void OnGamePaused()
         {
             _input.Disable();
-        }
-
-        private void OnBombButtonClicked()
-        {
-            _isAimingBomb = true;
         }
 
         private void OnHoldStart(InputAction.CallbackContext context)
@@ -90,12 +87,11 @@ namespace Game.Level
                 {
                     _bombThrower.TryThrow(hit.point);
                     _isAimingBomb = false;
-
-                    return;
                 }
-
-                if (hit.collider.TryGetComponent(out Entity cube))
+                else if (hit.collider.TryGetComponent(out Entity cube))
+                {
                     cube.Touch();
+                }
             }
         }
     }
