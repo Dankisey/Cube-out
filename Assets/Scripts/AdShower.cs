@@ -1,16 +1,18 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using Game.Bomb;
 using Game.Level.Map;
 using Game.UI;
-using System.Collections;
+using Game.Level;
 
 public class AdShower : MonoBehaviour
 {
     [SerializeField] private MapObserver _mapObserver;
+    [SerializeField] private InputHandler _inputHandler;
     [SerializeField] private BombsHolder _bombHolder;
     [SerializeField] private UIGroup _adGroup;
-    [SerializeField][Range(0f, 2f)] private float _adSuggestingDelay = 1f;
+    [SerializeField] [Range(0f, 2f)] private float _adSuggestingDelay = 0.5f;
 
     public event Action AdStarted;
     public event Action AdEnded;
@@ -19,17 +21,18 @@ public class AdShower : MonoBehaviour
     {
         if (_mapObserver != null)
             _mapObserver.FrozenAppeared += OnFrozenCubeAppeared;
-    }
 
+        if (_mapObserver != null)
+            _inputHandler.BombThrowingFailed += OnBombThrowingFailed;
+    }
+    
     private void OnDisable()
     {
         if (_mapObserver != null)
             _mapObserver.FrozenAppeared -= OnFrozenCubeAppeared;
-    }
-
-    public void SuggestAd()
-    {
-        _adGroup.TurnOn();
+        
+        if (_mapObserver != null)
+            _inputHandler.BombThrowingFailed -= OnBombThrowingFailed;
     }
 
     public void ShowBombRewardedAd()
@@ -42,7 +45,16 @@ public class AdShower : MonoBehaviour
         OnAdEnded();
 #endif
     }
-
+    
+    private bool TrySuggestBombAd()
+    {
+        if (_bombHolder.BombsAmount > 0)
+            return false;
+        
+        StartCoroutine(SuggestingCoroutine());
+        return true;
+    }
+    
     private IEnumerator SuggestingCoroutine()
     {
         yield return new WaitForSeconds(_adSuggestingDelay);
@@ -52,8 +64,12 @@ public class AdShower : MonoBehaviour
 
     private void OnFrozenCubeAppeared()
     {
-        if (_bombHolder.BombsAmount <= 0)
-            StartCoroutine(SuggestingCoroutine());
+        TrySuggestBombAd();
+    }
+    
+    private void OnBombThrowingFailed()
+    {
+        TrySuggestBombAd();
     }
 
     private void GiveBombReward() => _bombHolder.AddBomb();

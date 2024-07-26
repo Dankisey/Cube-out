@@ -1,6 +1,7 @@
+using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
 using Game.Bomb;
 using Game.Cube;
 using Game.Level.Map;
@@ -13,15 +14,23 @@ namespace Game.Level
         [SerializeField] private BombThrower _bombThrower;
         [SerializeField] private Rotator _rotator;
 
+        private IInputRaycastProcessor _currentRaycastProcessor;
+        private BombNavigatingBehaviour _bombNavigating;
+        private CubeTouchingBehaviour _cubeTouching;
         private PlayerInputActions _input;
         private Camera _camera;
-        private bool _isHolding = false;
-        private bool _isAimingBomb = false;
+        private bool _isHolding;
+
+        public event Action BombThrowingFailed;
 
         private void Awake()
         {
             _camera = Camera.main;
             Time.timeScale = 1;
+
+            _bombNavigating = new BombNavigatingBehaviour(_bombThrower);
+            _cubeTouching = new CubeTouchingBehaviour();
+            _currentRaycastProcessor = _cubeTouching;
         }
 
         private void OnEnable()
@@ -33,6 +42,7 @@ namespace Game.Level
             _input.Player.Hold.canceled += OnHoldEnd;
             _levelPauseController.IsPaused += OnGamePaused;
             _levelPauseController.IsResumed += OnGameResumed;
+            _bombNavigating.ThrowingFailed += OnThrowingFailed;
         }
 
         private void OnDisable()
@@ -43,6 +53,7 @@ namespace Game.Level
             _input.Player.Hold.canceled -= OnHoldEnd;
             _levelPauseController.IsPaused -= OnGamePaused;
             _levelPauseController.IsResumed -= OnGameResumed;
+            _bombNavigating.ThrowingFailed -= OnThrowingFailed;
         }
 
         private void Update()
@@ -51,14 +62,19 @@ namespace Game.Level
                 _rotator.Rotate(_input.Player.TapDelta.ReadValue<Vector2>());
         }
 
-        public void ActivateBombAiming()
+        public void ActivateBombNavigating()
         {
-            _isAimingBomb = true;
+            _currentRaycastProcessor = _bombNavigating;
+        }
+
+        public void ActivateCubeTouching()
+        {
+            _currentRaycastProcessor = _cubeTouching;
         }
 
         private void OnGameResumed()
         {
-            _input.Enable();
+            StartCoroutine(EnableInput());
         }
 
         private void OnGamePaused()
@@ -79,20 +95,52 @@ namespace Game.Level
         private void OnTapped(InputAction.CallbackContext context)
         {
             Ray ray = _camera.ScreenPointToRay(_input.Player.TapPosition.ReadValue<Vector2>());
-            int layerMask = 1;
 
-            if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, layerMask, QueryTriggerInteraction.Ignore))
+            if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, layerMask: 1, QueryTriggerInteraction.Ignore))
             {
-                if (_isAimingBomb)
-                {
-                    _bombThrower.TryThrow(hit.point);
-                    _isAimingBomb = false;
-                }
-                else if (hit.collider.TryGetComponent(out Entity cube))
-                {
-                    cube.Touch();
-                }
+                _currentRaycastProcessor.ProcessRaycast(hit);
             }
         }
+
+        private void OnThrowingFailed()
+        {
+            BombThrowingFailed?.Invoke();
+        }
+
+        private IEnumerator EnableInput(float delay = 0.2f)
+        {
+            yield return new WaitForSeconds(delay);
+            
+            _input.Enable();
+        }
+    }
+
+    public class BombNavigatingBehaviour : IInputRaycastProcessor
+    {
+        private readonly BombThrower _bombThrower;
+
+        public event Action ThrowingFailed;
+
+        public BombNavigatingBehaviour(BombThrower thrower) => _bombThrower = thrower;
+
+        public void ProcessRaycast(RaycastHit hit)
+        {
+            if (_bombThrower.TryThrow(hit.point) == false)
+                ThrowingFailed?.Invoke();
+        }
+    }
+
+    public class CubeTouchingBehaviour : IInputRaycastProcessor
+    {
+        public void ProcessRaycast(RaycastHit hit)
+        {
+            if (hit.collider.TryGetComponent(out Entity cube))
+                cube.Touch();
+        }
+    }
+
+    public interface IInputRaycastProcessor
+    {
+        public void ProcessRaycast(RaycastHit hit);
     }
 }

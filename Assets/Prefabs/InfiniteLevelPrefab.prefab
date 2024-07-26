@@ -372,7 +372,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 104dcc750276e944583e4efefaa6ed1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _localization: {fileID: 5146135949059155375}
+  _localizator: {fileID: 5146135949059155375}
 --- !u!1001 &2096714374048200990
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -387,15 +387,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 97371967830537286, guid: 42c80ab17fed39544ae862ada1fa53d0, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.65
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 97371967830537286, guid: 42c80ab17fed39544ae862ada1fa53d0, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.65
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 97371967830537286, guid: 42c80ab17fed39544ae862ada1fa53d0, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.65
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 134710228229493305, guid: 42c80ab17fed39544ae862ada1fa53d0, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -486,6 +486,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 3014599779765097208, guid: 42c80ab17fed39544ae862ada1fa53d0, type: 3}
+      propertyPath: _bombHolder
+      value: 
+      objectReference: {fileID: 740433083017097664}
     - target: {fileID: 3029370354974322142, guid: 42c80ab17fed39544ae862ada1fa53d0, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4
@@ -566,6 +570,14 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 160
       objectReference: {fileID: 0}
+    - target: {fileID: 4117879466813653954, guid: 42c80ab17fed39544ae862ada1fa53d0, type: 3}
+      propertyPath: _bombHolder
+      value: 
+      objectReference: {fileID: 740433083017097664}
+    - target: {fileID: 4117879466813653954, guid: 42c80ab17fed39544ae862ada1fa53d0, type: 3}
+      propertyPath: _adSuggestingDelay
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 4120853438993304851, guid: 42c80ab17fed39544ae862ada1fa53d0, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4
@@ -610,6 +622,10 @@ PrefabInstance:
     - target: {fileID: 5160927486920829458, guid: 42c80ab17fed39544ae862ada1fa53d0, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5528409220196115424, guid: 42c80ab17fed39544ae862ada1fa53d0, type: 3}
+      propertyPath: _holder
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5657199499860604501, guid: 42c80ab17fed39544ae862ada1fa53d0, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -677,15 +693,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8184036334801988420, guid: 42c80ab17fed39544ae862ada1fa53d0, type: 3}
       propertyPath: _mapSize.x
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8184036334801988420, guid: 42c80ab17fed39544ae862ada1fa53d0, type: 3}
       propertyPath: _mapSize.y
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8184036334801988420, guid: 42c80ab17fed39544ae862ada1fa53d0, type: 3}
       propertyPath: _mapSize.z
-      value: 6
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8184036334801988420, guid: 42c80ab17fed39544ae862ada1fa53d0, type: 3}
+      propertyPath: _maxSize.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8184036334801988420, guid: 42c80ab17fed39544ae862ada1fa53d0, type: 3}
+      propertyPath: _maxSize.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8184036334801988420, guid: 42c80ab17fed39544ae862ada1fa53d0, type: 3}
+      propertyPath: _maxSize.z
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8184036334801988420, guid: 42c80ab17fed39544ae862ada1fa53d0, type: 3}
+      propertyPath: _minSize.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8184036334801988420, guid: 42c80ab17fed39544ae862ada1fa53d0, type: 3}
+      propertyPath: _minSize.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8184036334801988420, guid: 42c80ab17fed39544ae862ada1fa53d0, type: 3}
+      propertyPath: _minSize.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8184036334801988420, guid: 42c80ab17fed39544ae862ada1fa53d0, type: 3}
+      propertyPath: _useRandomValues
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8673869498278871628, guid: 42c80ab17fed39544ae862ada1fa53d0, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -703,8 +747,10 @@ PrefabInstance:
     - {fileID: 6751530047144660776, guid: 42c80ab17fed39544ae862ada1fa53d0, type: 3}
     - {fileID: 8258450580796286211, guid: 42c80ab17fed39544ae862ada1fa53d0, type: 3}
     - {fileID: 5820800439031373716, guid: 42c80ab17fed39544ae862ada1fa53d0, type: 3}
+    - {fileID: 3315808991834104450, guid: 42c80ab17fed39544ae862ada1fa53d0, type: 3}
     m_RemovedGameObjects:
     - {fileID: 7235428545364737357, guid: 42c80ab17fed39544ae862ada1fa53d0, type: 3}
+    - {fileID: 3093515992615846112, guid: 42c80ab17fed39544ae862ada1fa53d0, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 5336487433580864403, guid: 42c80ab17fed39544ae862ada1fa53d0, type: 3}
       insertIndex: -1
@@ -759,7 +805,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 104dcc750276e944583e4efefaa6ed1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _localization: {fileID: 5146135949059155375}
+  _localizator: {fileID: 5146135949059155375}
 --- !u!224 &4102042983405527523 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2734921655353350397, guid: 42c80ab17fed39544ae862ada1fa53d0, type: 3}
@@ -809,4 +855,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 104dcc750276e944583e4efefaa6ed1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _localization: {fileID: 5146135949059155375}
+  _localizator: {fileID: 5146135949059155375}
