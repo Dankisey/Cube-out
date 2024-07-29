@@ -616,6 +616,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _button: {fileID: 171674498}
+  _image: {fileID: 171674499}
   _authorizer: {fileID: 1326604602}
   _selfGroup: {fileID: 1113248452}
   _authorizingGroup: {fileID: 166703814}
@@ -769,6 +770,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _button: {fileID: 185768851}
+  _image: {fileID: 185768852}
   _loader: {fileID: 1326604597}
 --- !u!1 &239456433
 GameObject:
@@ -1057,6 +1059,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _button: {fileID: 436852253}
+  _image: {fileID: 436852254}
 --- !u!114 &436852253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1497,6 +1500,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mapObserver: {fileID: 0}
+  _inputHandler: {fileID: 0}
   _bombHolder: {fileID: 0}
   _adGroup: {fileID: 0}
   _adSuggestingDelay: 1
@@ -1553,6 +1557,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _button: {fileID: 1556101037}
+  _image: {fileID: 1556101038}
 --- !u!114 &1556101037
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1769,6 +1774,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _button: {fileID: 1832006675}
+  _image: {fileID: 1832006676}
   _authorizer: {fileID: 1326604602}
   _mainGroup: {fileID: 1113248452}
   _authorizeGroup: {fileID: 166703814}

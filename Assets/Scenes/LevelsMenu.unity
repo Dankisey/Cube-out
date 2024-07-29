@@ -826,6 +826,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _button: {fileID: 674091547}
+  _image: {fileID: 674091548}
 --- !u!1 &832084429
 GameObject:
   m_ObjectHideFlags: 0
@@ -879,6 +880,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _button: {fileID: 832084432}
+  _image: {fileID: 832084433}
   _loader: {fileID: 1638865675}
 --- !u!114 &832084432
 MonoBehaviour:
@@ -1201,7 +1203,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -65, y: -65}
+  m_SizeDelta: {x: -18, y: -18}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1019332018
 MonoBehaviour:
@@ -1294,6 +1296,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _button: {fileID: 1255079748}
+  _image: {fileID: 1255079749}
 --- !u!114 &1255079748
 MonoBehaviour:
   m_ObjectHideFlags: 0

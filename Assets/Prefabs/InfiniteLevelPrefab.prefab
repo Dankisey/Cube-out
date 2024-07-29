@@ -611,6 +611,10 @@ PrefabInstance:
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: 2313447236266414530, guid: c90095cba950be74f8dce53a3fd72e85, type: 2}
+    - target: {fileID: 4836868602956574444, guid: 42c80ab17fed39544ae862ada1fa53d0, type: 3}
+      propertyPath: m_PixelsPerUnitMultiplier
+      value: 7.6
+      objectReference: {fileID: 0}
     - target: {fileID: 4887828258772341474, guid: 42c80ab17fed39544ae862ada1fa53d0, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4
