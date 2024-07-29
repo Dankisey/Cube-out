@@ -14,6 +14,7 @@ namespace Game.Level
         private void OnEnable()
         {
             _backgroundChangingObserver.IsRunningInBackground += Pause;
+            _adShower.SuggestingAdd += Pause;
             _adShower.AdStarted += Pause;
             _adShower.AdEnded += Resume;
         }
@@ -21,6 +22,7 @@ namespace Game.Level
         private void OnDisable()
         {
             _backgroundChangingObserver.IsRunningInBackground -= Pause;
+            _adShower.SuggestingAdd -= Pause;
             _adShower.AdStarted -= Pause;
             _adShower.AdEnded -= Resume;
         }

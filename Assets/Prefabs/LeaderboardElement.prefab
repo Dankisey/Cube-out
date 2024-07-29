@@ -188,7 +188,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fce74fcf7570e784882213bab14cd51c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _localization: {fileID: 3853799880518633530, guid: 04587c3ae7796eb4e83df0ad1d4963a3, type: 3}
   _image: {fileID: 180330970259839486}
   _playerName: {fileID: 4057659643021163834}
   _playerScore: {fileID: 3345521562037949609}
@@ -221,7 +220,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 29ce43c35db94864c83392634d07f531, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a0641044cdf9b354da97edfa45a92ef3, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -230,7 +229,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 3.2
 --- !u!1 &8602067058477349634
 GameObject:
   m_ObjectHideFlags: 0

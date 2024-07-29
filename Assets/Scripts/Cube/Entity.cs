@@ -7,6 +7,7 @@ using UnityEngine.InputSystem.HID;
 
 namespace Game.Cube
 {
+    [SelectionBase]
     [RequireComponent(typeof(Movement))]
     public class Entity : MonoBehaviour
     {

@@ -14,6 +14,7 @@ public class AdShower : MonoBehaviour
     [SerializeField] private UIGroup _adGroup;
     [SerializeField] [Range(0f, 2f)] private float _adSuggestingDelay = 0.5f;
 
+    public event Action SuggestingAdd;
     public event Action AdStarted;
     public event Action AdEnded;
 
@@ -60,6 +61,7 @@ public class AdShower : MonoBehaviour
         yield return new WaitForSeconds(_adSuggestingDelay);
 
         _adGroup.TurnOn();
+        SuggestingAdd?.Invoke();
     }
 
     private void OnFrozenCubeAppeared()
